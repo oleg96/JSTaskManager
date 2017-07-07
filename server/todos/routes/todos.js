@@ -1,26 +1,20 @@
-import express from 'express';
-import validate from 'express-validation';
+var express = require('express');
+var validate = require('express-validation');
 const router = express.Router();
 
-import {getById, getList, create, update} from '../controllers';
-import {
-    getList as getListValidator,
-    getById as getByIdValidator,
-} from '../validators';
+var getList = require('../controllers/getList');
+var create = require('../controllers/create');
+//import {
+    //getList as getListValidator,
+    //getById as getByIdValidator,
+//} from '../validators';
 
 // middleware for authorization
 // router.use(auth);
 
 // get all todos
-router.get('/', validate(getListValidator), getList, json);
+router.get('/', getList);
 
-// get todo by ID
-router.get('/:id', validate(getByIdValidator), getById, json);
+router.post('/create', create);
 
-// create todo
-router.post('/', validate(), create, json);
-
-// update todo
-router.put('/:id', validate(), update, json);
-
-export default router;
+module.exports = router;

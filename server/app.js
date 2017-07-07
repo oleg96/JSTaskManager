@@ -4,10 +4,15 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
-import {routes} from './todos';
+var routes = require('./todos/routes/todos');
+var mongo = require('./config');
 
 var app = express();
+
+//mongoose.connect(`${mongo.scheme}://${mongo.host}:${mongo.port}/${mongo.name}`);
+mongoose.connect('mongodb://localhost/TodoApp', {server: {auto_reconnect: true}});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
