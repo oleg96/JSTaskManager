@@ -7,12 +7,11 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 var routes = require('./todos/routes/todos');
-var mongo = require('./config');
+var db = require('./config');
 
 var app = express();
 
-//mongoose.connect(`${mongo.scheme}://${mongo.host}:${mongo.port}/${mongo.name}`);
-mongoose.connect('mongodb://localhost/TodoApp', {server: {auto_reconnect: true}});
+mongoose.connect(db.mongo, {server: {auto_reconnect: true}});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

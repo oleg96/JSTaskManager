@@ -1,14 +1,9 @@
-const TODO = require('../models/todo');
+const create = require('../services/create');
 
 module.exports = function (req, res, next) {
-    let newTODO = new TODO({
-        text: req.body.text,
-        completed: req.body.completed,
-        user: req.body.user_id
-    });
-    newTODO.save(function (err, newTODO) {
-        if (err)
-            return next(err);
+    create(req.body.text, req.body.completed, req.body.userId).then(newTODO => {
         res.status(201).json(newTODO);
-    })
+    }).catch((error) => {
+        res.status(500).send(error);
+    });
 };

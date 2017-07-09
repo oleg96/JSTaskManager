@@ -11,10 +11,10 @@ const TODOSchema = new Schema({
         type: Boolean,
         required: true
     },
-    //user: {
-        //type: Schema.ObjectId,
+    userId: {
+        type: Schema.ObjectId,
         //ref: 'User'
-    //}
+    }
 });
 
 module.exports = TODOSchema;
