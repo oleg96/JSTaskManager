@@ -1,7 +1,6 @@
-const getList = require('../services/getList');
-const TODO = require('../models/todo');
+import {getList} from '../services/index';
 
-module.exports = function (req, res, next) {
+export default (req, res, next) => {
     getList().then(todos => {
         res.status(200).json(todos);
     }).catch((error) => {

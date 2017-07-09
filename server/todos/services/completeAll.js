@@ -1,5 +1,5 @@
-const TODO = require('../models/todo');
+import {TODO} from '../models/index';
 
-module.exports = function (completed, userId) {
+export default (completed, userId) => {
     return TODO.updateMany({userId: userId}, {$set: {completed: completed}}, {new: true});
 };

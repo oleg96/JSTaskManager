@@ -1,5 +1,5 @@
-const TODO = require('../models/todo');
+import {TODO} from '../models/index';
 
-module.exports = function (userId) {
+export default (userId) => {
     return TODO.deleteMany({userId: userId, completed: true});
 };

@@ -1,6 +1,6 @@
-const completeAll = require('../services/completeAll');
+import {completeAll} from '../services/index';
 
-module.exports = function (req, res, next) {
+export default (req, res, next) => {
     completeAll(req.body.completed, req.body.userId).then(todos => {
         res.status(202).json(todos);
     }).catch((error) => {

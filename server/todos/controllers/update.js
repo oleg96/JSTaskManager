@@ -1,6 +1,6 @@
-const update = require('../services/update');
+import {update} from '../services/index';
 
-module.exports = function (req, res, next) {
+export default (req, res, next) => {
     update(req.body.id, req.body.text, req.body.completed, req.body.userId).then(updateTODO => {
         res.status(202).json(updateTODO);
     }).catch((error) => {

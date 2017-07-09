@@ -1,5 +1,5 @@
-const TODO = require('../models/todo');
+import {TODO} from '../models/index';
 
-module.exports = function (id, completed) {
+export default (id, completed) => {
     return TODO.findByIdAndUpdate(id, {$set: {completed: completed}}, {new: true});
 };

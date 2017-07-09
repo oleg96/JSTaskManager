@@ -1,6 +1,6 @@
-const remove = require('../services/remove');
+import {remove} from '../services/index';
 
-module.exports = function (req, res, next) {
+export default (req, res, next) => {
     remove(req.params.id).then(removeTODO => {
         res.status(202).json(removeTODO);
     }).catch((error) => {

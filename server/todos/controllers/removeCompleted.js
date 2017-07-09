@@ -1,6 +1,6 @@
-const removeCompleted = require('../services/removeCompleted');
+import {removeCompleted} from '../services/index';
 
-module.exports = function (req, res, next) {
+export default (req, res, next) => {
     removeCompleted(req.params.userId).then(removeTODOs => {
         res.status(202).json(removeTODOs);
     }).catch((error) => {

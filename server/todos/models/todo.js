@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const TODOSchema = require('../shemas/todo');
+import mongoose from 'mongoose';
+import {TODOSchema} from '../schemas/index';
 
 const TODO = mongoose.model('TODO', TODOSchema);
 
-module.exports = TODO;
+export default TODO;

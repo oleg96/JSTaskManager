@@ -2,13 +2,15 @@ var express = require('express');
 var validate = require('express-validation');
 const router = express.Router();
 
-var getList = require('../controllers/getList');
-var create = require('../controllers/create');
-var update = require('../controllers/update');
-var completeAll = require('../controllers/completeAll');
-var remove = require('../controllers/remove');
-var removeCompleted = require('../controllers/removeCompleted');
-var complete = require('../controllers/complete');
+import {
+    getList,
+    create,
+    update,
+    completeAll,
+    remove,
+    removeCompleted,
+    complete
+} from '../controllers/index'
 
 import {
     getListValidator,
@@ -38,4 +40,4 @@ router.delete('/removeCompleted/:userId', validate(removeCompletedValidator), re
 
 router.put('/complete', validate(completeValidator), complete);
 
-module.exports = router;
+export default router;

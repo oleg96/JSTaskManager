@@ -1,5 +1,5 @@
-const TODO = require('../models/todo');
+import {TODO} from '../models/index';
 
-module.exports = function (id) {
+export default (id) => {
     return TODO.deleteOne({_id: id});
 };
