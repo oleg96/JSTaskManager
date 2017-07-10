@@ -8,12 +8,14 @@ var mongoose = require('mongoose');
 
 import {routes as routesTodos} from './todos/index';
 import {routes as routesUsers} from './users/index';
+import {routesAuth} from './security/index';
+import {routesMiddleware} from './security/index';
 
-var db = require('./config');
+var config = require('./config');
 
 var app = express();
 
-mongoose.connect(db.mongo, {server: {auto_reconnect: true}});
+mongoose.connect(config.mongo, {server: {auto_reconnect: true}});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,8 +29,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(routesMiddleware.unless({
+    path: [
+        {url: '/users/register', methods: ['POST']},
+        {url: '/auth/authenticate', methods: ['POST']}
+    ]
+}));
 app.use('/todos', routesTodos);
 app.use('/users', routesUsers);
+app.use('/auth', routesAuth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

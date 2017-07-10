@@ -1,5 +1,5 @@
-var express = require('express');
-var validate = require('express-validation');
+import express from 'express';
+import validate from 'express-validation';
 const router = express.Router();
 
 import {
@@ -15,10 +15,6 @@ import {
     removeValidator,
 } from '../validators/index'
 
-// middleware for authorization
-// router.use(auth);
-
-// get all users
 router.get('/', getList);
 
 router.post('/register', validate(registerValidator), register);

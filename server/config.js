@@ -1,3 +1,4 @@
 module.exports = {
-    mongo: 'mongodb://localhost/TodoApp'
+    mongo: 'mongodb://localhost/TodoApp',
+    jwtSecret: 'thisismysecretjwt'
 }

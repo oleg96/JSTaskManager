@@ -1,5 +1,5 @@
-var express = require('express');
-var validate = require('express-validation');
+import express from 'express';
+import validate from 'express-validation';
 const router = express.Router();
 
 import {
@@ -20,9 +20,6 @@ import {
     removeCompletedValidator,
     completeValidator
 } from '../validators/index'
-
-// middleware for authorization
-// router.use(auth);
 
 // get all todos
 router.get('/', getList);
