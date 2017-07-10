@@ -13,7 +13,6 @@ import {
 } from '../controllers/index'
 
 import {
-    getListValidator,
     createValidator,
     updateValidator,
     completeAllValidator,
@@ -26,7 +25,7 @@ import {
 // router.use(auth);
 
 // get all todos
-router.get('/', validate(getListValidator), getList);
+router.get('/', getList);
 
 router.post('/create', validate(createValidator), create);
 

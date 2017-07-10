@@ -11,8 +11,8 @@ const TODOSchema = new Schema({
         required: true
     },
     userId: {
-        //type: Schema.ObjectId,
-        //ref: 'User'
+        type: Schema.ObjectId,
+        ref: 'User'
     }
 });
 
