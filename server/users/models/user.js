@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import {UserSchema} from '../schemas/index';
 
-const User = mongoose.model('TODO', UserSchema);
+const User = mongoose.model('User', UserSchema);
 
 export default User;
