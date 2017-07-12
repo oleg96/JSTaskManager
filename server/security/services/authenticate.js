@@ -16,7 +16,7 @@ export default (email, password) => {
                 return result;
             } else {
                 var token = jwt.sign(user, config.jwtSecret, {
-                    expiresIn: 30
+                    expiresIn: 3600
                 });
                 result = {
                     success: true,
