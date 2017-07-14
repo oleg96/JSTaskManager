@@ -1,5 +1,6 @@
 import {
     ADD_TODO,
+    UPDATE_TODO,
     COMPLETE_TODO
 } from '../constants/actionTypes';
 
@@ -14,6 +15,12 @@ const todos = (state = [], action) => {
                     completed: false
                 }
             ];
+        case 'UPDATE_TODO':
+            return state.map(todo =>
+                (todo.id === action.id)
+                    ? {...todo, text: todo.text}
+                    : todo
+            );
         case 'COMPLETE_TODO':
             return state.map(todo =>
                 (todo.id === action.id)
