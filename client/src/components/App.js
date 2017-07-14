@@ -1,7 +1,7 @@
 import React from 'react'
 import TodoAppBar from '../components/appBar'
 import Footer from './footer'
-import AddTodo from '../containers/addTodoForm'
+import AddTodo from './addTodoForm'
 import VisibleTodoList from '../containers/visibleTodoList'
 
 const App = () => (
