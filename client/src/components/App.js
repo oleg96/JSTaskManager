@@ -1,6 +1,6 @@
 import React from 'react'
 import Footer from './footer'
-import AddTodo from '../containers/addTodo'
+import AddTodo from '../containers/addTodoForm'
 import VisibleTodoList from '../containers/visibleTodoList'
 
 const App = () => (

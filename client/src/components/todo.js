@@ -1,15 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {ListItem, ListItemText} from 'material-ui/List';
+import Divider from 'material-ui/Divider';
 
 const Todo = ({onClick, completed, text}) => (
-    <li
-        onClick={onClick}
-        style={{
-            textDecoration: completed ? 'line-through' : 'none'
-        }}
-    >
-        {text}
-    </li>
+    <div>
+        <ListItem button onClick={onClick}
+                  style={{
+                      textDecoration: completed ? 'line-through' : 'none'
+                  }}>
+            <ListItemText primary={text}/>
+        </ListItem>
+        <Divider light/>
+    </div>
 );
 
 Todo.propTypes = {

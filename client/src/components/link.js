@@ -1,21 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {LabelCheckbox} from 'material-ui/Checkbox';
 
 const Link = ({active, children, onClick}) => {
     if (active) {
-        return <span>{children}</span>
+        return <LabelCheckbox
+            checked={true}
+            label={children}
+            value={children}
+        />
     }
 
     return (
-        <a
-            href="#"
+        <LabelCheckbox
+            checked={false}
+            label={children}
+            value={children}
             onClick={e => {
                 e.preventDefault()
                 onClick()
             }}
-        >
-            {children}
-        </a>
+        />
     )
 }
 
