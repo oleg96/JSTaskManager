@@ -1,19 +1,16 @@
 import React, {Component, PropTypes} from 'react';
 import {reduxForm} from 'redux-form';
-import addTodo from '../actions/addTodo';
+import updateTodo from '../actions/updateTodo';
 import {connect} from "react-redux";
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 
-class AddTodoForm extends Component {
+class UpdateTodoForm extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            todo: {
-                id: '',
-                text: ''
-            },
+            todo: props.todoProp,
             isLoading: false,
             errors: {}
         };
@@ -23,7 +20,8 @@ class AddTodoForm extends Component {
 
     async onSubmit(event) {
         event.preventDefault();
-        this.props.addTodo(this.state.todo.id, this.state.todo.text);
+        this.props.updateTodo(this.state.todo.id, this.state.todo.text);
+        this.props.onSave(event);
     }
 
     onChange(event) {
@@ -37,31 +35,27 @@ class AddTodoForm extends Component {
     }
 
     render() {
-        const {fields: {todo}, handleSubmit} = this.props;
+        const {fields: {todo}, onSubmit, onSave} = this.props;
 
         return (
             <form onSubmit={this.onSubmit}>
-                <TextField
-                    name="id"
-                    label="Id"
-                    value={this.state.todo.id}
-                    onChange={this.onChange}
-                />
                 <TextField
                     name="text"
                     label="Text"
                     value={this.state.todo.text}
                     onChange={this.onChange}
-                />
-                <Button raised color="primary" type="submit">Add todo</Button>
+                    ref={this.focusTextInputField}
+                    onBlur={this.onSubmit}
+                    autoFocus />
+                <Button raised color="primary" type="submit">Update todo</Button>
             </form>
         );
     }
 }
 
 const formData = {
-    form: 'AddTodoForm',
+    form: 'UpdateTodoForm',
     fields: ['todo']
 }
 
-export default connect(null, {addTodo})(reduxForm(formData)(AddTodoForm));
+export default connect(null, {updateTodo})(reduxForm(formData)(UpdateTodoForm));

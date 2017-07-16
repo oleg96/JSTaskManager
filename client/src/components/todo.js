@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import {ListItem, ListItemText} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 
-const Todo = ({onClick, onDblClick, completed, text}) => (
+const Todo = ({onClick, onDoubleClick, completed, text}) => (
     <div>
-        <ListItem button onClick={onClick} onDblClick={onDblClick}
+        <ListItem button onClick={onClick} onDoubleClick={onDoubleClick}
                   style={{
                       textDecoration: completed ? 'line-through' : 'none'
                   }}>
@@ -17,7 +17,7 @@ const Todo = ({onClick, onDblClick, completed, text}) => (
 
 Todo.propTypes = {
     onClick: PropTypes.func.isRequired,
-    onDblClick: PropTypes.func.isRequired,
+    onDoubleClick: PropTypes.func.isRequired,
     id: PropTypes.string.isRequired,
     completed: PropTypes.bool.isRequired,
     text: PropTypes.string.isRequired

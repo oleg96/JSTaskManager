@@ -18,7 +18,7 @@ const todos = (state = [], action) => {
         case 'UPDATE_TODO':
             return state.map(todo =>
                 (todo.id === action.id)
-                    ? {...todo, text: todo.text}
+                    ? {...todo, text: action.text}
                     : todo
             );
         case 'COMPLETE_TODO':
