@@ -3,6 +3,8 @@ import AddTodoForm from './addTodoForm';
 import UpdateTodoForm from './updateTodoForm';
 import Todo from './todo'
 import Footer from './footer'
+import Badge from 'material-ui/Badge';
+import Assignment from 'material-ui-icons/Assignment'
 
 class todoList extends Component {
 
@@ -11,6 +13,7 @@ class todoList extends Component {
         this.state = {
             todo: {},
             editing: false,
+            activeCount: 0,
             errors: {}
         };
     }
@@ -26,16 +29,25 @@ class todoList extends Component {
         })
     }
 
+    onActive = (todo) => {
+        if (todo.completed) {
+            this.setState({activeCount: this.state.activeCount++})
+        }
+    }
+
     render() {
         switch (this.state.editing) {
             case false:
                 return (
                     <div>
                         <AddTodoForm />
+                        <Badge badgeContent={this.state.activeCount} color="primary">
+                            <Assignment />
+                        </Badge>
                         {
                             this.props.todos.map(todo => (
-                                <Todo key={todo.id} {...todo} onClick={() => this.props.onTodoClick(todo.id)}
-                                      onDoubleClick={this.onDoubleClick(todo)}/>
+                            <Todo key={todo.id} {...todo} onClick={() => this.props.onTodoClick(todo.id)}
+                                      onDoubleClick={this.onDoubleClick(todo)} onDeleteClick={() => this.props.onDeleteClick(todo.id)}/>
                         ))
                         }
                         <Footer />

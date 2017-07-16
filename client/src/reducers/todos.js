@@ -1,7 +1,8 @@
 import {
     ADD_TODO,
     UPDATE_TODO,
-    COMPLETE_TODO
+    COMPLETE_TODO,
+    REMOVE_TODO
 } from '../constants/actionTypes';
 
 const todos = (state = [], action) => {
@@ -27,6 +28,8 @@ const todos = (state = [], action) => {
                     ? {...todo, completed: !todo.completed}
                     : todo
             );
+        case 'REMOVE_TODO':
+            return state.filter((todo) => todo.id !== action.id);
         default:
             return state
     }

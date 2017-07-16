@@ -23,7 +23,15 @@ class AddTodoForm extends Component {
 
     async onSubmit(event) {
         event.preventDefault();
-        this.props.addTodo(this.state.todo.id, this.state.todo.text);
+        try {
+            this.props.addTodo(this.state.todo.id, this.state.todo.text);
+            this.setState({todo: {
+                id: '',
+                text: ''
+            }});
+        } catch(e) {
+            this.setState({errors: {e}});
+        }
     }
 
     onChange(event) {
@@ -37,8 +45,6 @@ class AddTodoForm extends Component {
     }
 
     render() {
-        const {fields: {todo}, handleSubmit} = this.props;
-
         return (
             <form onSubmit={this.onSubmit}>
                 <TextField

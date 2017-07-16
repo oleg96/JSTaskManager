@@ -1,19 +1,57 @@
-import React from 'react'
+import React, {Component} from 'react';
 import PropTypes from 'prop-types'
-import {ListItem, ListItemText} from 'material-ui/List';
+import {ListItem, ListItemText, ListItemSecondaryAction} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
+import Button from 'material-ui/Button';
 
-const Todo = ({onClick, onDoubleClick, completed, text}) => (
-    <div>
-        <ListItem button onClick={onClick} onDoubleClick={onDoubleClick}
-                  style={{
-                      textDecoration: completed ? 'line-through' : 'none'
-                  }}>
-            <ListItemText primary={text}/>
-        </ListItem>
-        <Divider light/>
-    </div>
-);
+class Todo extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            mouseOver: false,
+            errors: {}
+        };
+    }
+
+    onMouseOver = (event) => {
+        this.setState({mouseOver: true});
+    }
+
+    onMouseOut = (event) => {
+        this.setState({mouseOver: false});
+    }
+
+    render() {
+        switch (this.state.mouseOver) {
+            case false:
+                return (
+                    <div onMouseEnter={this.onMouseOver} onMouseLeave={this.onMouseOut}>
+                        <ListItem button onClick={this.props.onClick} onDoubleClick={this.props.onDoubleClick}>
+                            <ListItemText primary={this.props.text} style={{
+                                textDecoration: this.props.completed ? 'line-through' : 'none'
+                            }}/>
+                        </ListItem>
+                        <Divider light/>
+                    </div>
+                )
+            case true:
+                return (
+                    <div onMouseEnter={this.onMouseOver} onMouseLeave={this.onMouseOut}>
+                        <ListItem button onClick={this.props.onClick} onDoubleClick={this.props.onDoubleClick}>
+                            <ListItemText primary={this.props.text} style={{
+                                textDecoration: this.props.completed ? 'line-through' : 'none'
+                            }}/>
+                            <ListItemSecondaryAction>
+                                <Button raised color="accent" onClick={this.props.onDeleteClick}>Delete todo</Button>
+                            </ListItemSecondaryAction>
+                        </ListItem>
+                        <Divider light/>
+                    </div>
+                )
+        }
+    }
+}
 
 Todo.propTypes = {
     onClick: PropTypes.func.isRequired,

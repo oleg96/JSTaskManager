@@ -20,8 +20,12 @@ class UpdateTodoForm extends Component {
 
     async onSubmit(event) {
         event.preventDefault();
-        this.props.updateTodo(this.state.todo.id, this.state.todo.text);
-        this.props.onSave(event);
+        try {
+            this.props.updateTodo(this.state.todo.id, this.state.todo.text);
+            this.props.onSave(event);
+        } catch (e) {
+            this.setState({errors: {e}});
+        }
     }
 
     onChange(event) {
@@ -35,8 +39,6 @@ class UpdateTodoForm extends Component {
     }
 
     render() {
-        const {fields: {todo}, onSubmit, onSave} = this.props;
-
         return (
             <form onSubmit={this.onSubmit}>
                 <TextField
@@ -44,9 +46,8 @@ class UpdateTodoForm extends Component {
                     label="Text"
                     value={this.state.todo.text}
                     onChange={this.onChange}
-                    ref={this.focusTextInputField}
                     onBlur={this.onSubmit}
-                    autoFocus />
+                    autoFocus/>
                 <Button raised color="primary" type="submit">Update todo</Button>
             </form>
         );
