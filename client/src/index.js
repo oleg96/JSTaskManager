@@ -12,7 +12,7 @@ let store = createStore(reducer, compose(
     applyMiddleware(thunk)
 ));
 
-store.dispatch(addTodo());
+//store.dispatch(addTodo());
 
 render(
     <MuiThemeProvider>

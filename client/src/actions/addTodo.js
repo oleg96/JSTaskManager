@@ -14,7 +14,7 @@ const addTodoSuccess = (id, text, completed) => {
 const addTodo = (text) => {
     return dispatch => {
         return createTodo(text, false).then(response => {
-            dispatch(addTodoSuccess(response.id, response.text, response.completed));
+            dispatch(addTodoSuccess(response._id, response.text, response.completed));
             return response;
         }).catch(error => {
             throw(error);

@@ -3,10 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "es6-promise": "^4.1.1",
-    "isomorphic-fetch": "^2.2.1",
-    "joi": "latest",
-    "jsonwebtoken": "^7.4.1",
+    "jwt-decode": "^2.2.0",
     "material-ui": "^1.0.0-alpha.21",
     "material-ui-icons": "^1.0.0-alpha.19",
     "prop-types": "^15.5.10",
@@ -19,7 +16,7 @@
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
-    "react-scripts": "1.0.7"
+    "react-scripts": "1.0.10"
   },
   "scripts": {
     "start": "set PORT=3001 && react-scripts start",

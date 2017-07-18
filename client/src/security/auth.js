@@ -1,4 +1,4 @@
-//import jwt from 'jsonwebtoken'
+import jwtDecode from 'jwt-decode';
 
 class Auth {
 
@@ -18,8 +18,8 @@ class Auth {
         return localStorage.getItem('token');
     }
 
-    static decodeToken(token) {
-        //return jwt.decode(token);
+    static decodeToken() {
+        return jwtDecode(localStorage.getItem('token'));
     }
 }
 export default Auth;
