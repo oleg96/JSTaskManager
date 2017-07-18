@@ -1,5 +1,5 @@
 import {
-    ADD_TODO,
+    ADD_TODO_SUCCESS,
     UPDATE_TODO,
     COMPLETE_TODO,
     REMOVE_TODO
@@ -7,13 +7,13 @@ import {
 
 const todos = (state = [], action) => {
     switch (action.type) {
-        case 'ADD_TODO':
+        case 'ADD_TODO_SUCCESS':
             return [
                 ...state,
                 {
                     id: action.id,
                     text: action.text,
-                    completed: false
+                    completed: action.completed
                 }
             ];
         case 'UPDATE_TODO':

@@ -4,6 +4,7 @@ import addTodo from '../actions/addTodo';
 import {connect} from "react-redux";
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
+import {bindActionCreators} from 'redux';
 
 class AddTodoForm extends Component {
 
@@ -11,7 +12,6 @@ class AddTodoForm extends Component {
         super(props);
         this.state = {
             todo: {
-                id: '',
                 text: ''
             },
             isLoading: false,
@@ -24,9 +24,8 @@ class AddTodoForm extends Component {
     async onSubmit(event) {
         event.preventDefault();
         try {
-            this.props.addTodo(this.state.todo.id, this.state.todo.text);
+            this.props.actions.addTodo(this.state.todo.text);
             this.setState({todo: {
-                id: '',
                 text: ''
             }});
         } catch(e) {
@@ -48,12 +47,6 @@ class AddTodoForm extends Component {
         return (
             <form onSubmit={this.onSubmit}>
                 <TextField
-                    name="id"
-                    label="Id"
-                    value={this.state.todo.id}
-                    onChange={this.onChange}
-                />
-                <TextField
                     name="text"
                     label="Text"
                     value={this.state.todo.text}
@@ -70,4 +63,10 @@ const formData = {
     fields: ['todo']
 }
 
-export default connect(null, {addTodo})(reduxForm(formData)(AddTodoForm));
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(addTodo, dispatch)
+    };
+}
+
+export default connect(null, {mapDispatchToProps})(reduxForm(formData)(AddTodoForm));

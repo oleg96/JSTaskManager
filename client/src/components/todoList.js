@@ -16,6 +16,7 @@ class todoList extends Component {
             activeCount: 0,
             errors: {}
         };
+        this.onActive = this.onActive.bind(this);
     }
 
     onDoubleClick = (todo) => (event) => {
@@ -29,9 +30,10 @@ class todoList extends Component {
         })
     }
 
-    onActive = (todo) => {
-        if (todo.completed) {
-            this.setState({activeCount: this.state.activeCount++})
+    onActive(completed, event) {
+        event.preventDefault()
+        if (completed !== true) {
+            this.setState({activeCount: this.state.activeCount + 1})
         }
     }
 
@@ -46,9 +48,11 @@ class todoList extends Component {
                         </Badge>
                         {
                             this.props.todos.map(todo => (
-                            <Todo key={todo.id} {...todo} onClick={() => this.props.onTodoClick(todo.id)}
-                                      onDoubleClick={this.onDoubleClick(todo)} onDeleteClick={() => this.props.onDeleteClick(todo.id)}/>
-                        ))
+                                <Todo key={todo.id} {...todo} onClick={() => this.props.onTodoClick(todo.id)}
+                                      onDoubleClick={this.onDoubleClick(todo)}
+                                      onDeleteClick={() => this.props.onDeleteClick(todo.id)}
+                                />
+                            ))
                         }
                         <Footer />
                     </div>
@@ -56,7 +60,7 @@ class todoList extends Component {
             case true:
                 return (
                     <div>
-                        <UpdateTodoForm todoProp={this.state.todo} onSave={this.onSave} />
+                        <UpdateTodoForm todoProp={this.state.todo} onSave={this.onSave}/>
                     </div>
                 )
         }
