@@ -1,11 +1,10 @@
 import React from 'react'
 import TodoAppBar from '../components/appBar'
-import VisibleTodoList from '../containers/visibleTodoList'
 
-const App = () => (
+const App = ({children}) => (
     <div>
         <TodoAppBar />
-        <VisibleTodoList />
+        {children}
     </div>
 )
 

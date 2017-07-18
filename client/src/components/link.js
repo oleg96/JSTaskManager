@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {LabelCheckbox} from 'material-ui/Checkbox';
+import LabelCheckbox from 'material-ui/Checkbox';
 
 const Link = ({active, children, onClick}) => {
     if (active) {
