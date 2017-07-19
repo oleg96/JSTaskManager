@@ -4,6 +4,10 @@ import register from '../actions/register';
 import {connect} from "react-redux";
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
+import Grid from 'material-ui/Grid';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
 
 class AddTodoForm extends Component {
 
@@ -27,7 +31,7 @@ class AddTodoForm extends Component {
         try {
             this.props.register(this.state.user.username, this.state.user.email, this.state.user.password);
             this.props.history.push("/todos");
-        } catch(e) {
+        } catch (e) {
             this.setState({errors: {e}});
         }
     }
@@ -45,25 +49,49 @@ class AddTodoForm extends Component {
     render() {
         return (
             <form onSubmit={this.onSubmit}>
-                <TextField
-                    name="username"
-                    label="User name"
-                    value={this.state.user.username}
-                    onChange={this.onChange}
-                />
-                <TextField
-                    name="email"
-                    label="Email"
-                    value={this.state.user.email}
-                    onChange={this.onChange}
-                />
-                <TextField
-                    name="password"
-                    label="Password"
-                    value={this.state.user.password}
-                    onChange={this.onChange}
-                />
-                <Button raised color="primary" type="submit">Register</Button>
+                <AppBar position="static" color="default">
+                    <Grid
+                        container
+                        align='center'
+                        justify='center'
+                        direction='column'
+                    >
+                        <Grid item>
+                            <Toolbar>
+                                <Typography type="title" color="inherit">
+                                    Registration
+                                </Typography>
+                            </Toolbar>
+                        </Grid>
+                        <Grid item>
+                            <TextField
+                                name="username"
+                                label="User name"
+                                value={this.state.user.username}
+                                onChange={this.onChange}
+                            />
+                        </Grid>
+                        <Grid item>
+                            <TextField
+                                name="email"
+                                label="Email"
+                                value={this.state.user.email}
+                                onChange={this.onChange}
+                            />
+                        </Grid>
+                        <Grid item>
+                            <TextField
+                                name="password"
+                                label="Password"
+                                value={this.state.user.password}
+                                onChange={this.onChange}
+                            />
+                        </Grid>
+                        <Grid item>
+                            <Button raised color="primary" type="submit">Register</Button>
+                        </Grid>
+                    </Grid>
+                </AppBar>
             </form>
         );
     }

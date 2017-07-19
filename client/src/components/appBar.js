@@ -12,8 +12,8 @@ class TodoAppBar extends React.Component {
                 <Typography type="title" color="inherit">
                     Todo App
                 </Typography>
-                <Button color="contrast"><NavLink to="/todos">Todos</NavLink></Button>
-                <Button color="contrast"><NavLink to="/register">Register</NavLink></Button>
+                <NavLink to="/todos" style={{textDecoration: 'none'}}><Button color="contrast">Todos</Button></NavLink>
+                <NavLink to="/register" style={{textDecoration: 'none'}}><Button color="contrast">Register</Button></NavLink>
             </Toolbar>
         </AppBar>
     }
