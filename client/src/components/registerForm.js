@@ -8,6 +8,7 @@ import Grid from 'material-ui/Grid';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
+import Snackbar from 'material-ui/Snackbar';
 
 class AddTodoForm extends Component {
 
@@ -20,7 +21,8 @@ class AddTodoForm extends Component {
                 password: ''
             },
             isLoading: false,
-            errors: {}
+            errors: '',
+            open: false
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -28,16 +30,22 @@ class AddTodoForm extends Component {
 
     async onSubmit(event) {
         event.preventDefault();
-        try {
-            this.props.register(this.state.user.username, this.state.user.email, this.state.user.password);
-            this.props.history.push("/todos");
-        } catch (e) {
-            this.setState({errors: {e}});
-        }
+        this.props.register(this.state.user.username, this.state.user.email, this.state.user.password)
+            .then(response => this.props.history.push("/todos"))
+            .catch(error => {
+                let newError = error.message;
+                this.setState({
+                    errors: newError,
+                    open: true
+                })
+            });
     }
 
     onChange(event) {
-        this.setState({errors: {}});
+        this.setState({
+            errors: '',
+            open: false
+        });
         const field = event.target.name;
         const user = this.state.user;
         user[field] = event.target.value;
@@ -92,6 +100,7 @@ class AddTodoForm extends Component {
                         </Grid>
                     </Grid>
                 </AppBar>
+                <Snackbar open={this.state.open} message={this.state.errors}/>
             </form>
         );
     }

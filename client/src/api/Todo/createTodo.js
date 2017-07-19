@@ -17,7 +17,10 @@ export const createTodo = (text, completed) => {
             })
         })
         .then(
-            response => response.json(),
-            error => console.log('An error occured.', error)
+            response => response.json()
         )
+        .catch((error) => {
+            console.log('An error occured.', error)
+            throw error;
+        });
 };

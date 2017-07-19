@@ -1,5 +1,12 @@
 import {SERVER_URL} from '../../constants/serverURL'
 
+function validateResponse(response) {
+    if (!response.ok) {
+        throw Error(response.statusText);
+    }
+    return response;
+}
+
 export const registerUser = (username, email, password) => {
 
     return fetch(SERVER_URL + '/users/register',
@@ -14,8 +21,12 @@ export const registerUser = (username, email, password) => {
                 'password': password,
             })
         })
+        .then(validateResponse)
         .then(
-            response => response.json(),
-            error => console.log('An error occured.', error)
+            response => response.json()
         )
+        .catch((error) => {
+            console.log('An error occured.', error)
+            throw error;
+        });
 };
