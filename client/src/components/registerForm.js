@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import {reduxForm} from 'redux-form';
 import register from '../actions/register';
 import {connect} from "react-redux";
@@ -8,9 +8,9 @@ import Grid from 'material-ui/Grid';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
-import Snackbar from 'material-ui/Snackbar';
+import setMessage from '../actions/setMessage';
 
-class AddTodoForm extends Component {
+class registerForm extends Component {
 
     constructor(props) {
         super(props);
@@ -20,9 +20,7 @@ class AddTodoForm extends Component {
                 email: '',
                 password: ''
             },
-            isLoading: false,
-            errors: '',
-            open: false
+            isLoading: false
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -31,21 +29,18 @@ class AddTodoForm extends Component {
     async onSubmit(event) {
         event.preventDefault();
         this.props.register(this.state.user.username, this.state.user.email, this.state.user.password)
-            .then(response => this.props.history.push("/todos"))
+            .then(message => {
+                this.props.setMessage("Registration completed", true)
+                this.props.history.push("/todos")
+            })
             .catch(error => {
                 let newError = error.message;
-                this.setState({
-                    errors: newError,
-                    open: true
-                })
+                this.props.setMessage(newError, true)
             });
     }
 
     onChange(event) {
-        this.setState({
-            errors: '',
-            open: false
-        });
+        this.props.setMessage("", false)
         const field = event.target.name;
         const user = this.state.user;
         user[field] = event.target.value;
@@ -100,7 +95,6 @@ class AddTodoForm extends Component {
                         </Grid>
                     </Grid>
                 </AppBar>
-                <Snackbar open={this.state.open} message={this.state.errors}/>
             </form>
         );
     }
@@ -113,6 +107,7 @@ const formData = {
 
 const mapDispatchToProps = {
     register: register,
+    setMessage: setMessage
 }
 
-export default connect(null, mapDispatchToProps)(reduxForm(formData)(AddTodoForm));
+export default connect(null, mapDispatchToProps)(reduxForm(formData)(registerForm));
