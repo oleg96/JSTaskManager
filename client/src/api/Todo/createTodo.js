@@ -1,5 +1,6 @@
 import Auth from '../../security/auth'
 import {SERVER_URL} from '../../constants/serverURL'
+import validateResponse from '../validateResponse';
 
 export const createTodo = (text, completed) => {
 
@@ -16,11 +17,9 @@ export const createTodo = (text, completed) => {
                 'userId': Auth.decodeToken()['_doc']['_id']
             })
         })
-        .then(
-            response => response.json()
-        )
-        .catch((error) => {
-            console.log('An error occured.', error)
-            throw error;
-        });
+        .then(response => {
+            return response.json().then(json => {
+                return validateResponse(response) ? json : Promise.reject(json);
+            })
+        })
 };

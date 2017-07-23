@@ -4,6 +4,7 @@ import addTodo from '../actions/addTodo';
 import {connect} from "react-redux";
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
+import setMessage from '../actions/setMessage';
 
 class AddTodoForm extends Component {
 
@@ -13,8 +14,7 @@ class AddTodoForm extends Component {
             todo: {
                 text: ''
             },
-            isLoading: false,
-            errors: {}
+            isLoading: false
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -22,18 +22,20 @@ class AddTodoForm extends Component {
 
     async onSubmit(event) {
         event.preventDefault();
-        try {
-            this.props.addTodo(this.state.todo.text);
-            this.setState({todo: {
-                text: ''
-            }});
-        } catch(e) {
-            this.setState({errors: {e}});
-        }
+        this.props.addTodo(this.state.todo.text)
+            .then(
+                this.setState({
+                    todo: {
+                        text: ''
+                    }
+                }))
+            .catch(error => {
+                this.props.setMessage(error.message, true)
+            });
     }
 
     onChange(event) {
-        this.setState({errors: {}});
+        this.setState(this.props.setMessage("", false));
         const field = event.target.name;
         const todo = this.state.todo;
         todo[field] = event.target.value;
@@ -64,6 +66,7 @@ const formData = {
 
 const mapDispatchToProps = {
     addTodo: addTodo,
+    setMessage: setMessage
 }
 
 export default connect(null, mapDispatchToProps)(reduxForm(formData)(AddTodoForm));
