@@ -19,6 +19,7 @@ const todos = (state = [], action) => {
             ];
         case 'GET_TODOS_SUCCESS':
             return action.todos.map(todo => {
+                todo.id = todo._id;
                 return todo;
             });
         case 'UPDATE_TODO':
