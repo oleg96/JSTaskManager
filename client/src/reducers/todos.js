@@ -1,5 +1,6 @@
 import {
     ADD_TODO_SUCCESS,
+    GET_TODOS_SUCCESS,
     UPDATE_TODO,
     COMPLETE_TODO,
     REMOVE_TODO
@@ -16,6 +17,10 @@ const todos = (state = [], action) => {
                     completed: action.completed
                 }
             ];
+        case 'GET_TODOS_SUCCESS':
+            return action.todos.map(todo => {
+                return todo;
+            });
         case 'UPDATE_TODO':
             return state.map(todo =>
                 (todo.id === action.id)

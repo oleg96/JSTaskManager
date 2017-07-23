@@ -1,21 +1,21 @@
 import {SERVER_URL} from '../../constants/serverURL'
 import validateResponse from '../validateResponse';
+import auth from '../../security/auth'
 
-export const loginUser = (email, password) => {
-    return fetch(SERVER_URL + '/auth/authenticate',
+export const getTodos = (userId) => {
+
+    return fetch(SERVER_URL + '/todos/',
         {
-            method: 'POST',
+            method: 'GET',
             headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                'email': email,
-                'password': password,
-            })
+                'Content-Type': 'application/json',
+                'x-access-token': auth.getUserToken(),
+                'userId': userId
+            }
         })
         .then(response => {
             return response.json().then(json => {
                 return validateResponse(response) ? json : Promise.reject(json);
             })
         })
-}
+};

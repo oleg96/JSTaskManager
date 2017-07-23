@@ -14,6 +14,7 @@ import {
 
 import {
     createValidator,
+    getListValidator,
     updateValidator,
     completeAllValidator,
     removeValidator,
@@ -21,8 +22,7 @@ import {
     completeValidator
 } from '../validators/index'
 
-// get all todos
-router.get('/', getList);
+router.get('/', validate(getListValidator), getList);
 
 router.post('/create', validate(createValidator), create);
 

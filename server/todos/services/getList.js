@@ -1,5 +1,5 @@
 import {TODO} from '../models/index';
 
-export default () => {
-    return TODO.find();
+export default (userId) => {
+    return TODO.find(userId);
 };

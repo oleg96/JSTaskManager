@@ -5,6 +5,7 @@ import Todo from './todo'
 import Footer from './footer'
 import Badge from 'material-ui/Badge';
 import Assignment from 'material-ui-icons/Assignment'
+import auth from '../security/auth'
 
 class todoList extends Component {
 
@@ -17,6 +18,10 @@ class todoList extends Component {
             errors: {}
         };
         this.onActive = this.onActive.bind(this);
+    }
+
+    componentDidMount() {
+        this.props.getTodoList(auth.decodeToken()['_doc']['_id']);
     }
 
     onDoubleClick = (todo) => (event) => {

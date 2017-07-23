@@ -29,8 +29,7 @@ app.use(cookieParser());
 app.use(routesMiddleware.unless({
     path: [
         {url: '/users/register', methods: ['POST']},
-        {url: '/auth/authenticate', methods: ['POST']},
-        {url: '/todos/create', methods: ['POST']}
+        {url: '/auth/authenticate', methods: ['POST']}
     ]
 }));
 app.use('/todos', routesTodos);
