@@ -3,6 +3,7 @@ import completeTodo from '../actions/completeTodo'
 import removeTodo from '../actions/removeTodo'
 import getTodoList from '../actions/getTodoList'
 import TodoList from '../components/todoList'
+import setMessage from '../actions/setMessage'
 
 const getVisibleTodos = (todos, filter) => {
     switch (filter) {
@@ -22,6 +23,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
+    setMessage: setMessage,
     getTodoList: getTodoList,
     onTodoClick: completeTodo,
     onDeleteClick: removeTodo

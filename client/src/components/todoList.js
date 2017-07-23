@@ -21,7 +21,10 @@ class todoList extends Component {
     }
 
     componentDidMount() {
-        this.props.getTodoList(auth.decodeToken()['_doc']['_id']);
+        this.props.getTodoList(auth.decodeToken()['_doc']['_id'])
+            .catch(error => {
+                this.props.setMessage(error.message, true)
+            });
     }
 
     onDoubleClick = (todo) => (event) => {
