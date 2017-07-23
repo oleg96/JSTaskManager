@@ -29,13 +29,12 @@ class registerForm extends Component {
     async onSubmit(event) {
         event.preventDefault();
         this.props.register(this.state.user.username, this.state.user.email, this.state.user.password)
-            .then(message => {
-                this.props.setMessage("Registration completed", true)
+            .then(response => {
+                this.props.setMessage(response.message, true)
                 this.props.history.push("/login")
             })
             .catch(error => {
-                let newError = error.message;
-                this.props.setMessage(newError, true)
+                this.props.setMessage(error.message, true)
             });
     }
 

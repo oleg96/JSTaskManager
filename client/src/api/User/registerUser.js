@@ -1,11 +1,5 @@
 import {SERVER_URL} from '../../constants/serverURL'
-
-function validateResponse(response) {
-    if (!response.ok) {
-        throw Error(response.statusText);
-    }
-    return response;
-}
+import validateResponse from "../validateResponse";
 
 export const registerUser = (username, email, password) => {
 
@@ -21,12 +15,9 @@ export const registerUser = (username, email, password) => {
                 'password': password,
             })
         })
-        .then(validateResponse)
-        .then(
-            response => response.json()
-        )
-        .catch((error) => {
-            console.log('An error occured.', error)
-            throw error;
-        });
+        .then(response => {
+            return response.json().then(json => {
+                return validateResponse(response) ? json : Promise.reject(json);
+            })
+        })
 };
