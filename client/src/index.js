@@ -7,6 +7,7 @@ import {MuiThemeProvider} from 'material-ui/styles';
 import thunk from 'redux-thunk'
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import registerForm from './components/registerForm';
+import loginForm from './components/loginForm';
 import visibleTodoList from './containers/visibleTodoList';
 import App from './components/App';
 
@@ -21,6 +22,7 @@ render(
                 <App>
                     <Switch>
                         <Route path="/register" component={registerForm}/>
+                        <Route path="/login" component={loginForm}/>
                         <Route path="/todos" component={visibleTodoList}/>
                     </Switch>
                 </App>

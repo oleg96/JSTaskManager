@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {reduxForm} from 'redux-form';
-import register from '../actions/register';
+import login from '../actions/login';
 import {connect} from "react-redux";
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
@@ -10,13 +10,12 @@ import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import setMessage from '../actions/setMessage';
 
-class registerForm extends Component {
+class loginForm extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             user: {
-                username: '',
                 email: '',
                 password: ''
             },
@@ -28,14 +27,13 @@ class registerForm extends Component {
 
     async onSubmit(event) {
         event.preventDefault();
-        this.props.register(this.state.user.username, this.state.user.email, this.state.user.password)
-            .then(message => {
-                this.props.setMessage("Registration completed", true)
-                this.props.history.push("/login")
+        this.props.login(this.state.user.email, this.state.user.password)
+            .then(response => {
+                this.props.setMessage(response.message, true)
+                this.props.history.push("/todos")
             })
             .catch(error => {
-                let newError = error.message;
-                this.props.setMessage(newError, true)
+                this.props.setMessage(error.message, true)
             });
     }
 
@@ -62,17 +60,9 @@ class registerForm extends Component {
                         <Grid item>
                             <Toolbar>
                                 <Typography type="title" color="inherit">
-                                    Registration
+                                    Login
                                 </Typography>
                             </Toolbar>
-                        </Grid>
-                        <Grid item>
-                            <TextField
-                                name="username"
-                                label="User name"
-                                value={this.state.user.username}
-                                onChange={this.onChange}
-                            />
                         </Grid>
                         <Grid item>
                             <TextField
@@ -91,7 +81,7 @@ class registerForm extends Component {
                             />
                         </Grid>
                         <Grid item>
-                            <Button raised color="primary" type="submit">Register</Button>
+                            <Button raised color="primary" type="submit">Login</Button>
                         </Grid>
                     </Grid>
                 </AppBar>
@@ -101,13 +91,13 @@ class registerForm extends Component {
 }
 
 const formData = {
-    form: 'RegisterForm',
+    form: 'LoginForm',
     fields: ['user']
 }
 
 const mapDispatchToProps = {
-    register: register,
+    login: login,
     setMessage: setMessage
 }
 
-export default connect(null, mapDispatchToProps)(reduxForm(formData)(registerForm));
+export default connect(null, mapDispatchToProps)(reduxForm(formData)(loginForm));

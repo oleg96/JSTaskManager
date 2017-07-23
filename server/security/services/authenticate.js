@@ -9,11 +9,11 @@ export default (email, password) => {
         let result = {};
         if (!user) {
             result = {success: false, message: 'Authentication failed. User not found.'};
-            return result;
+            throw result;
         } else if (user) {
             if (user.password !== password) {
                 result = {success: false, message: 'Authentication failed. Wrong password.'};
-                return result;
+                throw result;
             } else {
                 var token = jwt.sign(user, config.jwtSecret, {
                     expiresIn: 3600
