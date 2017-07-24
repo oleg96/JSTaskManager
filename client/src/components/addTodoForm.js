@@ -35,7 +35,7 @@ class AddTodoForm extends Component {
     }
 
     onChange(event) {
-        this.setState(this.props.setMessage("", false));
+        this.props.setMessage("", false);
         const field = event.target.name;
         const todo = this.state.todo;
         todo[field] = event.target.value;
