@@ -3,7 +3,7 @@ import {
     GET_TODOS_SUCCESS,
     UPDATE_TODO_SUCCESS,
     COMPLETE_TODO_SUCCESS,
-    REMOVE_TODO
+    REMOVE_TODO_SUCCESS
 } from '../constants/actionTypes';
 
 const todos = (state = [], action) => {
@@ -34,7 +34,7 @@ const todos = (state = [], action) => {
                     ? {...todo, completed: !todo.completed}
                     : todo
             );
-        case 'REMOVE_TODO':
+        case 'REMOVE_TODO_SUCCESS':
             return state.filter((todo) => todo.id !== action.id);
         default:
             return state

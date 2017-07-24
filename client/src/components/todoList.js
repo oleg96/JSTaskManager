@@ -33,6 +33,13 @@ class todoList extends Component {
             });
     }
 
+    onDeleteClick = (id) => (event) => {
+        this.props.onDeleteClick(id)
+            .catch(error => {
+                this.props.setMessage(error.message, true)
+            });
+    }
+
     onDoubleClick = (todo) => (event) => {
         this.setState({editing: true, todo: todo});
     }
@@ -64,7 +71,7 @@ class todoList extends Component {
                             this.props.todos.map(todo => (
                                 <Todo key={todo.id} {...todo} onClick={this.onTodoClick(todo.id)}
                                       onDoubleClick={this.onDoubleClick(todo)}
-                                      onDeleteClick={() => this.props.onDeleteClick(todo.id)}
+                                      onDeleteClick={this.onDeleteClick(todo.id)}
                                 />
                             ))
                         }
