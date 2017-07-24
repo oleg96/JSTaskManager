@@ -6,6 +6,7 @@ import Footer from './footer'
 import Badge from 'material-ui/Badge';
 import Assignment from 'material-ui-icons/Assignment'
 import Auth from '../security/auth'
+import Button from 'material-ui/Button';
 
 class todoList extends Component {
 
@@ -40,6 +41,13 @@ class todoList extends Component {
             });
     }
 
+    onDeleteCompletedClick = (userId) => (event) => {
+        this.props.onDeleteCompletedClick(userId)
+            .catch(error => {
+                this.props.setMessage(error.message, true)
+            });
+    }
+
     onDoubleClick = (todo) => (event) => {
         this.setState({editing: true, todo: todo});
     }
@@ -64,6 +72,7 @@ class todoList extends Component {
                 return (
                     <div>
                         <AddTodoForm />
+                        <Button raised color="accent" onClick={this.onDeleteCompletedClick(Auth.decodeToken()['_doc']['_id'])}>Delete completed todos</Button>
                         <Badge badgeContent={this.state.activeCount} color="primary">
                             <Assignment />
                         </Badge>

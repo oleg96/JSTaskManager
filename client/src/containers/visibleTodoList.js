@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import completeTodo from '../actions/completeTodo'
 import removeTodo from '../actions/removeTodo'
 import getTodoList from '../actions/getTodoList'
+import removeCompletedTodos from '../actions/removeCompletedTodos'
 import TodoList from '../components/todoList'
 import setMessage from '../actions/setMessage'
 
@@ -26,7 +27,8 @@ const mapDispatchToProps = {
     setMessage: setMessage,
     getTodoList: getTodoList,
     onTodoClick: completeTodo,
-    onDeleteClick: removeTodo
+    onDeleteClick: removeTodo,
+    onDeleteCompletedClick: removeCompletedTodos
 }
 
 const VisibleTodoList = connect(
