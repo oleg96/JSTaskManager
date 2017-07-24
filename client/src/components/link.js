@@ -1,25 +1,34 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import LabelCheckbox from 'material-ui/Checkbox';
+import Checkbox from 'material-ui/Checkbox';
+import {FormControlLabel} from 'material-ui/Form';
 
 const Link = ({active, children, onClick}) => {
     if (active) {
-        return <LabelCheckbox
-            checked={true}
+        return <FormControlLabel
+            control={
+                <Checkbox
+                    checked={true}
+                    value={children}
+                />
+            }
             label={children}
-            value={children}
         />
     }
 
     return (
-        <LabelCheckbox
-            checked={false}
+        <FormControlLabel
+            control={
+                <Checkbox
+                    checked={false}
+                    label={children}
+                    onClick={e => {
+                        e.preventDefault()
+                        onClick()
+                    }}
+                />
+            }
             label={children}
-            value={children}
-            onClick={e => {
-                e.preventDefault()
-                onClick()
-            }}
         />
     )
 }
