@@ -1,10 +1,10 @@
 import {loginUser} from '../api/User/loginUser';
-import auth from '../security/auth';
+import Auth from '../security/auth';
 
-const register = (email, password) => {
+const login = (email, password) => {
     return response => {
         return loginUser(email, password).then(response => {
-            auth.authenticateUser(response.token);
+            Auth.authenticateUser(response.token);
             return response;
         }).catch(error => {
             throw(error);
@@ -12,4 +12,4 @@ const register = (email, password) => {
     };
 }
 
-export default register
+export default login

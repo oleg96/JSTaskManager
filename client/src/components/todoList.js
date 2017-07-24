@@ -5,7 +5,7 @@ import Todo from './todo'
 import Footer from './footer'
 import Badge from 'material-ui/Badge';
 import Assignment from 'material-ui-icons/Assignment'
-import auth from '../security/auth'
+import Auth from '../security/auth'
 
 class todoList extends Component {
 
@@ -21,7 +21,7 @@ class todoList extends Component {
     }
 
     componentDidMount() {
-        this.props.getTodoList(auth.decodeToken()['_doc']['_id'])
+        this.props.getTodoList(Auth.decodeToken()['_doc']['_id'])
             .catch(error => {
                 this.props.setMessage(error.message, true)
             });
