@@ -7,6 +7,7 @@ import Badge from 'material-ui/Badge';
 import Assignment from 'material-ui-icons/Assignment'
 import Auth from '../security/auth'
 import Button from 'material-ui/Button';
+import Grid from 'material-ui/Grid';
 
 class todoList extends Component {
 
@@ -14,10 +15,8 @@ class todoList extends Component {
         super(props)
         this.state = {
             todo: {},
-            editing: false,
-            activeCount: 0
+            editing: false
         };
-        this.onActive = this.onActive.bind(this);
     }
 
     componentDidMount() {
@@ -59,23 +58,26 @@ class todoList extends Component {
         })
     }
 
-    onActive(completed, event) {
-        event.preventDefault()
-        if (completed !== true) {
-            this.setState({activeCount: this.state.activeCount + 1})
-        }
-    }
-
     render() {
         switch (this.state.editing) {
             case false:
                 return (
                     <div>
-                        <AddTodoForm />
-                        <Button raised color="accent" onClick={this.onDeleteCompletedClick(Auth.decodeToken()['_doc']['_id'])}>Delete completed todos</Button>
-                        <Badge badgeContent={this.state.activeCount} color="primary">
-                            <Assignment />
-                        </Badge>
+                        <Grid
+                            container
+                            align='center'
+                            justify='center'
+                            direction='column'
+                        >
+                            <Grid item>
+                                <AddTodoForm />
+                            </Grid>
+                            <Grid item>
+                                <Button raised color="accent"
+                                        onClick={this.onDeleteCompletedClick(Auth.decodeToken()['_doc']['_id'])}>Delete
+                                    completed todos</Button>
+                            </Grid>
+                        </Grid>
                         {
                             this.props.todos.map(todo => (
                                 <Todo key={todo.id} {...todo} onClick={this.onTodoClick(todo.id)}
@@ -85,12 +87,33 @@ class todoList extends Component {
                             ))
                         }
                         <Footer />
+                        <Grid
+                            container
+                            align='center'
+                            justify='center'
+                            direction='row'
+                        >
+                            <Grid item>
+                                <Badge badgeContent={this.props.activeCount} color="primary">
+                                    <Assignment />
+                                </Badge>
+                            </Grid>
+                        </Grid>
                     </div>
                 )
             case true:
                 return (
                     <div>
-                        <UpdateTodoForm todoProp={this.state.todo} onSave={this.onSave}/>
+                        <Grid
+                            container
+                            align='center'
+                            justify='center'
+                            direction='column'
+                        >
+                            <Grid item>
+                                <UpdateTodoForm todoProp={this.state.todo} onSave={this.onSave}/>
+                            </Grid>
+                        </Grid>
                     </div>
                 )
         }
