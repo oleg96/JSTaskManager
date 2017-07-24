@@ -2,7 +2,7 @@ import {
     ADD_TODO_SUCCESS,
     GET_TODOS_SUCCESS,
     UPDATE_TODO_SUCCESS,
-    COMPLETE_TODO,
+    COMPLETE_TODO_SUCCESS,
     REMOVE_TODO
 } from '../constants/actionTypes';
 
@@ -28,7 +28,7 @@ const todos = (state = [], action) => {
                     ? {...todo, text: action.text}
                     : todo
             );
-        case 'COMPLETE_TODO':
+        case 'COMPLETE_TODO_SUCCESS':
             return state.map(todo =>
                 (todo.id === action.id)
                     ? {...todo, completed: !todo.completed}

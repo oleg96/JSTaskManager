@@ -14,8 +14,7 @@ class todoList extends Component {
         this.state = {
             todo: {},
             editing: false,
-            activeCount: 0,
-            errors: {}
+            activeCount: 0
         };
         this.onActive = this.onActive.bind(this);
     }
@@ -27,8 +26,15 @@ class todoList extends Component {
             });
     }
 
+    onTodoClick = (id) => (event) => {
+        this.props.onTodoClick(id)
+            .catch(error => {
+                this.props.setMessage(error.message, true)
+            });
+    }
+
     onDoubleClick = (todo) => (event) => {
-        this.setState({errors: {}, editing: true, todo: todo});
+        this.setState({editing: true, todo: todo});
     }
 
     onSave = (event) => {
@@ -56,7 +62,7 @@ class todoList extends Component {
                         </Badge>
                         {
                             this.props.todos.map(todo => (
-                                <Todo key={todo.id} {...todo} onClick={() => this.props.onTodoClick(todo.id)}
+                                <Todo key={todo.id} {...todo} onClick={this.onTodoClick(todo.id)}
                                       onDoubleClick={this.onDoubleClick(todo)}
                                       onDeleteClick={() => this.props.onDeleteClick(todo.id)}
                                 />
