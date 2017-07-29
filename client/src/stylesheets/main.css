@@ -1,0 +1,13 @@
+.navLink {
+    text-decoration: none;
+}
+
+.formPosition {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formContainer {
+    height: 100vh;
+}

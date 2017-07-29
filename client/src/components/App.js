@@ -4,6 +4,7 @@ import Snackbar from 'material-ui/Snackbar';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import setMessage from '../actions/setMessage';
+import styles from '../stylesheets/main.css';
 
 class App extends Component {
 
@@ -19,8 +20,11 @@ class App extends Component {
         return (
             <div>
                 <TodoAppBar />
-                {this.props.children}
-                <Snackbar open={this.props.open} message={this.props.message} autoHideDuration={4000} onRequestClose={this.handleClose}/>
+                <div className="formContainer">
+                    {this.props.children}
+                </div>
+                <Snackbar open={this.props.open} message={this.props.message} autoHideDuration={4000}
+                          onRequestClose={this.handleClose}/>
             </div>
         )
     }
