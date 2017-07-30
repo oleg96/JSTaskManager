@@ -30,7 +30,10 @@ class TodoAppBar extends Component {
                             <Typography type="title" color="inherit">
                                 Todo App
                             </Typography>
-                            <NavLink to="/todos" className="navLink"><Button color="contrast">Todos</Button></NavLink>
+                        </Grid>
+                        <Grid item>
+                            <NavLink to="/todos" className="navLink"><Button
+                                color="contrast">Todos</Button></NavLink>
                         </Grid>
                     </Grid>
                     <Grid

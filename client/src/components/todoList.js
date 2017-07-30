@@ -97,6 +97,7 @@ class todoList extends Component {
                                 <Badge badgeContent={this.props.activeCount} color="primary">
                                     <Assignment />
                                 </Badge>
+                                {this.props.activeCount === 1 ? " item left" : " items left"}
                             </Grid>
                         </Grid>
                     </div>

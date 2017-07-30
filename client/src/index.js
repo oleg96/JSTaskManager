@@ -1,23 +1,30 @@
-import React from "react";
-import {render} from "react-dom";
-import {Provider} from "react-redux";
-import {applyMiddleware, compose, createStore} from "redux";
-import reducer from "./reducers/";
-import {MuiThemeProvider} from "material-ui/styles";
-import thunk from "redux-thunk";
-import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
-import registerForm from "./components/registerForm";
-import loginForm from "./components/loginForm";
-import visibleTodoList from "./containers/visibleTodoList";
-import App from "./components/App";
-import Auth from "./security/auth";
+import React from 'react'
+import {render} from 'react-dom'
+import {Provider} from 'react-redux'
+import {createStore, compose, applyMiddleware} from 'redux'
+import reducer from './reducers/'
+import {MuiThemeProvider} from 'material-ui/styles';
+import thunk from 'redux-thunk'
+import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
+import registerForm from './components/registerForm';
+import loginForm from './components/loginForm';
+import visibleTodoList from './containers/visibleTodoList';
+import App from './components/App';
+import Auth from './security/auth';
+import createMuiTheme from 'material-ui/styles/theme'
+
+const muiTheme = createMuiTheme({
+    appBar: {
+        height: 56, // Instead of 64
+    },
+})
 
 let store = createStore(reducer, compose(
     applyMiddleware(thunk)
 ));
 
 render(
-    <MuiThemeProvider>
+    <MuiThemeProvider theme={muiTheme}>
         <Provider store={store}>
             <BrowserRouter>
                 <App>
