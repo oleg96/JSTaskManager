@@ -19,11 +19,32 @@ class TodoAppBar extends Component {
         if (Auth.isUserAuthenticated()) {
             return <AppBar position="static">
                 <Toolbar>
-                    <Typography type="title" color="inherit">
-                        Todo App
-                    </Typography>
-                    <NavLink to="/todos" className="navLink"><Button color="contrast">Todos</Button></NavLink>
-                    <a href="/logout" className="navLink"><Button color="contrast" onClick={this.logOut}>Logout</Button></a>
+                    <Grid
+                        container
+                        align='center'
+                        justify='flex-start'
+                        direction='row'
+                        gutter={0}
+                    >
+                        <Grid item>
+                            <Typography type="title" color="inherit">
+                                Todo App
+                            </Typography>
+                            <NavLink to="/todos" className="navLink"><Button color="contrast">Todos</Button></NavLink>
+                        </Grid>
+                    </Grid>
+                    <Grid
+                        container
+                        align='center'
+                        justify='flex-end'
+                        direction='row'
+                        gutter={0}
+                    >
+                        <Grid item>
+                            <a href="/logout" className="navLink"><Button color="contrast"
+                                                                          onClick={this.logOut}>Logout</Button></a>
+                        </Grid>
+                    </Grid>
                 </Toolbar>
             </AppBar>
         } else {

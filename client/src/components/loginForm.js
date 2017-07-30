@@ -5,10 +5,11 @@ import {connect} from "react-redux";
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import Grid from 'material-ui/Grid';
-import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import setMessage from '../actions/setMessage';
+import Paper from 'material-ui/Paper';
+import styles from '../stylesheets/main.css';
 
 class loginForm extends Component {
 
@@ -49,43 +50,48 @@ class loginForm extends Component {
 
     render() {
         return (
-            <form onSubmit={this.onSubmit}>
-                <AppBar position="static" color="default">
-                    <Grid
-                        container
-                        align='center'
-                        justify='center'
-                        direction='column'
-                    >
-                        <Grid item>
-                            <Toolbar>
-                                <Typography type="title" color="inherit">
-                                    Login
-                                </Typography>
-                            </Toolbar>
-                        </Grid>
-                        <Grid item>
-                            <TextField
-                                name="email"
-                                label="Email"
-                                value={this.state.user.email}
-                                onChange={this.onChange}
-                            />
-                        </Grid>
-                        <Grid item>
-                            <TextField
-                                name="password"
-                                label="Password"
-                                value={this.state.user.password}
-                                onChange={this.onChange}
-                            />
-                        </Grid>
-                        <Grid item>
-                            <Button raised color="primary" type="submit">Login</Button>
-                        </Grid>
-                    </Grid>
-                </AppBar>
-            </form>
+            <Grid container direction='row' justify='center' align='stretch'>
+                <Grid item xs={9} sm={7} md={5} lg={3}>
+                    <Paper className="formPosition">
+                        <form onSubmit={this.onSubmit}>
+                            <Grid
+                                container
+                                align='center'
+                                justify='center'
+                                direction='column'
+                                gutter={8}
+                            >
+                                <Grid item>
+                                    <Toolbar>
+                                        <Typography type="title" color="inherit">
+                                            Login
+                                        </Typography>
+                                    </Toolbar>
+                                </Grid>
+                                <Grid item>
+                                    <TextField
+                                        name="email"
+                                        label="Email"
+                                        value={this.state.user.email}
+                                        onChange={this.onChange}
+                                    />
+                                </Grid>
+                                <Grid item>
+                                    <TextField
+                                        name="password"
+                                        label="Password"
+                                        value={this.state.user.password}
+                                        onChange={this.onChange}
+                                    />
+                                </Grid>
+                                <Grid item>
+                                    <Button raised color="primary" type="submit">Login</Button>
+                                </Grid>
+                            </Grid>
+                        </form>
+                    </Paper>
+                </Grid>
+            </Grid>
         );
     }
 }

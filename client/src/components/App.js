@@ -20,7 +20,7 @@ class App extends Component {
         return (
             <div>
                 <TodoAppBar />
-                <div className="formContainer">
+                <div>
                     {this.props.children}
                 </div>
                 <Snackbar open={this.props.open} message={this.props.message} autoHideDuration={4000}
