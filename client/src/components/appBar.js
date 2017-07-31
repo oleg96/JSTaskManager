@@ -11,7 +11,6 @@ import Grid from 'material-ui/Grid';
 class TodoAppBar extends Component {
 
     logOut(event) {
-        event.preventDefault();
         Auth.deauthenticateUser();
     }
 

@@ -32,6 +32,7 @@ render(
                         <Route path="/register" component={registerForm}/>
                         <Route path="/login" component={loginForm}/>
                         <AuthenticatedRoute path="/todos" component={visibleTodoList}/>
+                        <Redirect from="/logout" to="/login"/>
                     </Switch>
                 </App>
             </BrowserRouter>

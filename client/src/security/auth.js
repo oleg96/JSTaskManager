@@ -22,4 +22,5 @@ class Auth {
         return jwtDecode(localStorage.getItem('token'));
     }
 }
+
 export default Auth;
