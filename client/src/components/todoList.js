@@ -8,6 +8,8 @@ import Assignment from 'material-ui-icons/Assignment'
 import Auth from '../security/auth'
 import Button from 'material-ui/Button';
 import Grid from 'material-ui/Grid';
+import Checkbox from 'material-ui/Checkbox';
+import {FormControlLabel} from 'material-ui/Form';
 
 class todoList extends Component {
 
@@ -31,77 +33,124 @@ class todoList extends Component {
             .catch(error => {
                 this.props.setMessage(error.message, true)
             });
-    }
+    };
 
     onDeleteClick = (id) => (event) => {
         this.props.onDeleteClick(id)
             .catch(error => {
                 this.props.setMessage(error.message, true)
             });
-    }
+    };
 
     onDeleteCompletedClick = (userId) => (event) => {
         this.props.onDeleteCompletedClick(userId)
             .catch(error => {
                 this.props.setMessage(error.message, true)
             });
-    }
+    };
+
+    onCompletedAllClick = (complete, userId) => (event) => {
+        event.preventDefault();
+        this.props.onCompleteAllClick(complete, userId)
+            .catch(error => {
+                this.props.setMessage(error.message, true)
+            });
+    };
 
     onDoubleClick = (todo) => (event) => {
         this.setState({editing: true, todo: todo});
-    }
+    };
 
     onSave = (event) => {
-        event.preventDefault()
+        event.preventDefault();
         this.setState({
             editing: false
         })
-    }
+    };
 
     render() {
         switch (this.state.editing) {
             case false:
-                return (
-                    <div>
-                        <Grid
-                            container
-                            align='center'
-                            justify='center'
-                            direction='column'
-                        >
-                            <Grid item>
-                                <AddTodoForm />
+                if (this.props.visibility) {
+                    return (
+                        <div>
+                            <Grid
+                                container
+                                align='center'
+                                justify='center'
+                                direction='column'
+                            >
+                                <Grid item>
+                                    <AddTodoForm />
+                                </Grid>
                             </Grid>
-                            <Grid item>
-                                <Button raised color="accent"
-                                        onClick={this.onDeleteCompletedClick(Auth.decodeToken()['_doc']['_id'])}>Delete
-                                    completed todos</Button>
+                            <Grid
+                                container
+                                align='center'
+                                justify='center'
+                                direction='row'
+                            >
+                                <Grid item>
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={this.props.checkboxStatus}
+                                                value="Complete all todos"
+                                                onChange={this.onCompletedAllClick(this.props.checkboxStatus, Auth.decodeToken()['_doc']['_id'])}
+                                            />
+                                        }
+                                        label="Complete all todos"
+                                    />
+                                </Grid>
+                                <Grid item>
+                                    <Button raised color="accent"
+                                            onClick={this.onDeleteCompletedClick(Auth.decodeToken()['_doc']['_id'])}>Delete
+                                        completed todos</Button>
+                                </Grid>
                             </Grid>
-                        </Grid>
-                        {
-                            this.props.todos.map(todo => (
-                                <Todo key={todo.id} {...todo} onClick={this.onTodoClick(todo.id)}
-                                      onDoubleClick={this.onDoubleClick(todo)}
-                                      onDeleteClick={this.onDeleteClick(todo.id)}
-                                />
-                            ))
-                        }
-                        <Footer />
-                        <Grid
-                            container
-                            align='center'
-                            justify='center'
-                            direction='row'
-                        >
-                            <Grid item>
-                                <Badge badgeContent={this.props.activeCount} color="primary">
-                                    <Assignment />
-                                </Badge>
-                                {this.props.activeCount === 1 ? " item left" : " items left"}
+                            {
+                                this.props.todos.map(todo => (
+                                    <Todo key={todo.id} {...todo} onClick={this.onTodoClick(todo.id)}
+                                          onDoubleClick={this.onDoubleClick(todo)}
+                                          onDeleteClick={this.onDeleteClick(todo.id)}
+                                    />
+                                ))
+                            }
+                            <Grid
+                                container
+                                align='center'
+                                justify='center'
+                                direction='row'
+                            >
+                                <Grid item>
+                                    <Footer />
+                                </Grid>
+                                <Grid item>
+                                    <Badge badgeContent={this.props.activeCount} color="primary">
+                                        <Assignment />
+                                    </Badge>
+                                    {this.props.activeCount === 1 ? " item left" : " items left"}
+                                </Grid>
                             </Grid>
-                        </Grid>
-                    </div>
-                )
+                        </div>
+                    )
+                }
+                else {
+                    return (
+                        <div>
+                            <Grid
+                                container
+                                align='center'
+                                justify='center'
+                                direction='column'
+                            >
+                                <Grid item>
+                                    <AddTodoForm />
+                                </Grid>
+                            </Grid>
+                        </div>
+                    )
+                }
             case true:
                 return (
                     <div>
