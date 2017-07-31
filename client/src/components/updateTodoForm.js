@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import setMessage from '../actions/setMessage';
+import removeTodo from '../actions/removeTodo'
 
 class UpdateTodoForm extends Component {
 
@@ -20,20 +21,38 @@ class UpdateTodoForm extends Component {
 
     async onSubmit(event) {
         event.preventDefault();
-        this.props.updateTodo(this.state.todo.id, this.state.todo.text)
-            .then(
-                this.setState({
-                    todo: {
-                        text: ''
-                    }
-                })
-            )
-            .then(
-                this.props.onSave(event)
-            )
-            .catch(error => {
-                this.props.setMessage(error.message, true)
-            });
+        if (this.state.todo.text === '' || this.state.todo.text === null) {
+            this.props.removeTodo(this.state.todo.id)
+                .then(
+                    this.setState({
+                        todo: {
+                            text: ''
+                        }
+                    })
+                )
+                .then(
+                    this.props.onSave(event)
+                )
+                .catch(error => {
+                    this.props.setMessage(error.message, true)
+                });
+        }
+        else {
+            this.props.updateTodo(this.state.todo.id, this.state.todo.text)
+                .then(
+                    this.setState({
+                        todo: {
+                            text: ''
+                        }
+                    })
+                )
+                .then(
+                    this.props.onSave(event)
+                )
+                .catch(error => {
+                    this.props.setMessage(error.message, true)
+                });
+        }
     }
 
     onChange(event) {
@@ -69,6 +88,7 @@ const formData = {
 
 const mapDispatchToProps = {
     updateTodo: updateTodo,
+    removeTodo: removeTodo,
     setMessage: setMessage
 }
 

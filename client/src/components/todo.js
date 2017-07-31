@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types'
-import {ListItem, ListItemText, ListItemSecondaryAction} from 'material-ui/List';
-import Divider from 'material-ui/Divider';
-import Button from 'material-ui/Button';
+import React, {Component} from "react";
+import PropTypes from "prop-types";
+import {ListItem, ListItemSecondaryAction, ListItemText} from "material-ui/List";
+import Divider from "material-ui/Divider";
+import Button from "material-ui/Button";
 
 class Todo extends Component {
 
@@ -43,7 +43,8 @@ class Todo extends Component {
                                 textDecoration: this.props.completed ? 'line-through' : 'none'
                             }}/>
                             <ListItemSecondaryAction>
-                                <Button raised color="accent" onClick={this.props.onDeleteClick}>Delete todo</Button>
+                                <Button raised color="accent" onClick={this.props.onDeleteClick}>Delete
+                                    todo</Button>
                             </ListItemSecondaryAction>
                         </ListItem>
                         <Divider light/>

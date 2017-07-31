@@ -125,7 +125,7 @@ class todoList extends Component {
                                 </Grid>
                                 {
                                     this.props.haveCompleted
-                                        ? <Grid item hiddenElement={this.props.haveCompleted}>
+                                        ? <Grid item>
                                         <Button raised color="accent"
                                                 onClick={this.onDeleteCompletedClick(Auth.decodeToken()['_doc']['_id'])}>Delete
                                             completed todos</Button>
