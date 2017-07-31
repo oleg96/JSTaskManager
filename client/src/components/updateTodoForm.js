@@ -19,6 +19,12 @@ class UpdateTodoForm extends Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
 
+    handleKeyPress = (event) => {
+        if (event.keyCode === 27) {
+            this.props.onSave(event);
+        }
+    }
+
     async onSubmit(event) {
         event.preventDefault();
         if (this.state.todo.text === '' || this.state.todo.text === null) {
@@ -74,6 +80,7 @@ class UpdateTodoForm extends Component {
                     value={this.state.todo.text}
                     onChange={this.onChange}
                     onBlur={this.onSubmit}
+                    onKeyDown={this.handleKeyPress}
                     autoFocus/>
                 <Button raised color="primary" type="submit">Update todo</Button>
             </form>
