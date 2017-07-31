@@ -22,7 +22,7 @@ class AddTodoForm extends Component {
 
     async onSubmit(event) {
         event.preventDefault();
-        this.props.addTodo(this.state.todo.text)
+        this.props.addTodo(this.state.todo.text.trim())
             .then(
                 this.setState({
                     todo: {

@@ -27,7 +27,7 @@ class UpdateTodoForm extends Component {
 
     async onSubmit(event) {
         event.preventDefault();
-        if (this.state.todo.text === '' || this.state.todo.text === null) {
+        if (this.state.todo.text.trim() === '' || this.state.todo.text === null) {
             this.props.removeTodo(this.state.todo.id)
                 .then(
                     this.setState({
@@ -44,7 +44,7 @@ class UpdateTodoForm extends Component {
                 });
         }
         else {
-            this.props.updateTodo(this.state.todo.id, this.state.todo.text)
+            this.props.updateTodo(this.state.todo.id, this.state.todo.text.trim())
                 .then(
                     this.setState({
                         todo: {
