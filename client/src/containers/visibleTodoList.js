@@ -23,6 +23,7 @@ const getVisibleTodos = (todos, filter) => {
 const mapStateToProps = (state) => ({
     todos: getVisibleTodos(state.todos, state.visibilityFilter),
     activeCount: state.todos.reduce((count, todo) => !todo.completed ? count + 1 : count, 0),
+    haveCompleted: Boolean(state.todos.reduce((count, todo) => todo.completed ? count + 1 : count, 0)),
     checkboxStatus: state.todos.every(todo => todo.completed),
     visibility: Boolean(state.todos.length)
 });

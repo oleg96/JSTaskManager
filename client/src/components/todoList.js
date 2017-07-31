@@ -10,6 +10,7 @@ import Button from 'material-ui/Button';
 import Grid from 'material-ui/Grid';
 import Checkbox from 'material-ui/Checkbox';
 import {FormControlLabel} from 'material-ui/Form';
+import styles from '../stylesheets/main.css';
 
 class todoList extends Component {
 
@@ -122,11 +123,15 @@ class todoList extends Component {
                                         label="Complete all todos"
                                     />
                                 </Grid>
-                                <Grid item>
-                                    <Button raised color="accent"
-                                            onClick={this.onDeleteCompletedClick(Auth.decodeToken()['_doc']['_id'])}>Delete
-                                        completed todos</Button>
-                                </Grid>
+                                {
+                                    this.props.haveCompleted
+                                        ? <Grid item hiddenElement={this.props.haveCompleted}>
+                                        <Button raised color="accent"
+                                                onClick={this.onDeleteCompletedClick(Auth.decodeToken()['_doc']['_id'])}>Delete
+                                            completed todos</Button>
+                                    </Grid>
+                                        : null
+                                }
                             </Grid>
                             {
                                 this.props.todos.map(todo => (
