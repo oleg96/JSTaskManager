@@ -24,28 +24,44 @@ class todoList extends Component {
     componentDidMount() {
         this.props.getTodoList(Auth.decodeToken()['_doc']['_id'])
             .catch(error => {
-                this.props.setMessage(error.message, true)
+                this.props.setMessage(error.message, true);
+                if (error.message === "Failed to authenticate token." || error.message === "No token provided.") {
+                    Auth.deauthenticateUser();
+                    this.props.history.push("/login");
+                }
             });
     }
 
     onTodoClick = (id) => (event) => {
         this.props.onTodoClick(id)
             .catch(error => {
-                this.props.setMessage(error.message, true)
+                this.props.setMessage(error.message, true);
+                if (error.message === "Failed to authenticate token." || error.message === "No token provided.") {
+                    Auth.deauthenticateUser();
+                    this.props.history.push("/login");
+                }
             });
     };
 
     onDeleteClick = (id) => (event) => {
         this.props.onDeleteClick(id)
             .catch(error => {
-                this.props.setMessage(error.message, true)
+                this.props.setMessage(error.message, true);
+                if (error.message === "Failed to authenticate token." || error.message === "No token provided.") {
+                    Auth.deauthenticateUser();
+                    this.props.history.push("/login");
+                }
             });
     };
 
     onDeleteCompletedClick = (userId) => (event) => {
         this.props.onDeleteCompletedClick(userId)
             .catch(error => {
-                this.props.setMessage(error.message, true)
+                this.props.setMessage(error.message, true);
+                if (error.message === "Failed to authenticate token." || error.message === "No token provided.") {
+                    Auth.deauthenticateUser();
+                    this.props.history.push("/login");
+                }
             });
     };
 
@@ -53,7 +69,11 @@ class todoList extends Component {
         event.preventDefault();
         this.props.onCompleteAllClick(complete, userId)
             .catch(error => {
-                this.props.setMessage(error.message, true)
+                this.props.setMessage(error.message, true);
+                if (error.message === "Failed to authenticate token." || error.message === "No token provided.") {
+                    Auth.deauthenticateUser();
+                    this.props.history.push("/login");
+                }
             });
     };
 

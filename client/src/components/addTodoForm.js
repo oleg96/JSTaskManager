@@ -52,6 +52,7 @@ class AddTodoForm extends Component {
                     label="Text"
                     value={this.state.todo.text}
                     onChange={this.onChange}
+                    autoFocus
                 />
                 <Button raised color="primary" type="submit">Add todo</Button>
             </form>
