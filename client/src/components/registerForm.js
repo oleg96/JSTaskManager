@@ -91,6 +91,7 @@ class registerForm extends Component {
                                         label="Password"
                                         value={this.state.user.password}
                                         onChange={this.onChange}
+                                        type="password"
                                     />
                                 </Grid>
                                 <Grid item>
