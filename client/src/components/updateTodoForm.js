@@ -91,12 +91,12 @@ class UpdateTodoForm extends Component {
 const formData = {
     form: 'UpdateTodoForm',
     fields: ['todo']
-}
+};
 
 const mapDispatchToProps = {
     updateTodo: updateTodo,
     removeTodo: removeTodo,
     setMessage: setMessage
-}
+};
 
 export default connect(null, mapDispatchToProps)(reduxForm(formData)(UpdateTodoForm));

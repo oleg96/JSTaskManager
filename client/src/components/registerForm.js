@@ -108,11 +108,11 @@ class registerForm extends Component {
 const formData = {
     form: 'RegisterForm',
     fields: ['user']
-}
+};
 
 const mapDispatchToProps = {
     register: register,
     setMessage: setMessage
-}
+};
 
 export default connect(null, mapDispatchToProps)(reduxForm(formData)(registerForm));

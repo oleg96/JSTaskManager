@@ -86,4 +86,4 @@ class TodoAppBar extends Component {
     }
 }
 
-export default TodoAppBar
+export default TodoAppBar;

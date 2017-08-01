@@ -1,8 +1,9 @@
-import React from "react";
+import React, {Component} from "react";
 import FilterLink from "../containers/filterLink";
-import { FormGroup } from 'material-ui/Form';
+import {FormGroup} from 'material-ui/Form';
 
-class Footer extends React.Component {
+class Footer extends Component {
+
     render() {
         return <FormGroup row>
             <FilterLink filter="SHOW_ALL">
@@ -18,4 +19,4 @@ class Footer extends React.Component {
     }
 }
 
-export default Footer
+export default Footer;

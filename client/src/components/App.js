@@ -43,6 +43,6 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
     setMessage: setMessage
-}
+};
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

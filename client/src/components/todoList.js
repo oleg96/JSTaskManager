@@ -15,7 +15,7 @@ import styles from '../stylesheets/main.css';
 class todoList extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             todo: {},
             editing: false

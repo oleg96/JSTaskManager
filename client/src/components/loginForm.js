@@ -99,11 +99,11 @@ class loginForm extends Component {
 const formData = {
     form: 'LoginForm',
     fields: ['user']
-}
+};
 
 const mapDispatchToProps = {
     login: login,
     setMessage: setMessage
-}
+};
 
 export default connect(null, mapDispatchToProps)(reduxForm(formData)(loginForm));

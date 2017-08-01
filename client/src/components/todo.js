@@ -9,18 +9,17 @@ class Todo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            mouseOver: false,
-            errors: {}
+            mouseOver: false
         };
     }
 
     onMouseOver = (event) => {
         this.setState({mouseOver: true});
-    }
+    };
 
     onMouseOut = (event) => {
         this.setState({mouseOver: false});
-    }
+    };
 
     render() {
         switch (this.state.mouseOver) {
@@ -34,7 +33,7 @@ class Todo extends Component {
                         </ListItem>
                         <Divider light/>
                     </div>
-                )
+                );
             case true:
                 return (
                     <div onMouseEnter={this.onMouseOver} onMouseLeave={this.onMouseOut}>
@@ -62,4 +61,4 @@ Todo.propTypes = {
     text: PropTypes.string.isRequired
 };
 
-export default Todo
+export default Todo;

@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import {reduxForm} from 'redux-form';
 import addTodo from '../actions/addTodo';
 import {connect} from "react-redux";
@@ -63,11 +63,11 @@ class AddTodoForm extends Component {
 const formData = {
     form: 'AddTodoForm',
     fields: ['todo']
-}
+};
 
 const mapDispatchToProps = {
     addTodo: addTodo,
     setMessage: setMessage
-}
+};
 
 export default connect(null, mapDispatchToProps)(reduxForm(formData)(AddTodoForm));

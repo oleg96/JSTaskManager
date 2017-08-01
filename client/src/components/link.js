@@ -1,42 +1,54 @@
-import React from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import Checkbox from 'material-ui/Checkbox';
 import {FormControlLabel} from 'material-ui/Form';
 
-const Link = ({active, children, onClick}) => {
-    if (active) {
-        return <FormControlLabel
-            control={
-                <Checkbox
-                    checked={true}
-                    value={children}
-                />
-            }
-            label={children}
-        />
+class Link extends Component {
+
+    constructor(props) {
+        super(props);
     }
 
-    return (
-        <FormControlLabel
-            control={
-                <Checkbox
-                    checked={false}
-                    label={children}
-                    onClick={e => {
-                        e.preventDefault()
-                        onClick()
-                    }}
-                />
+    render() {
+        switch (this.props.active) {
+            case true: {
+                return (
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={true}
+                                value={this.props.children}
+                            />
+                        }
+                        label={this.props.children}
+                    />
+                )
             }
-            label={children}
-        />
-    )
+            case false: {
+                return (
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={false}
+                                label={this.props.children}
+                                onClick={e => {
+                                    e.preventDefault()
+                                    this.props.onClick()
+                                }}
+                            />
+                        }
+                        label={this.props.children}
+                    />
+                )
+            }
+        }
+    }
 }
 
 Link.propTypes = {
     active: PropTypes.bool.isRequired,
     children: PropTypes.node.isRequired,
     onClick: PropTypes.func.isRequired
-}
+};
 
-export default Link
+export default Link;
