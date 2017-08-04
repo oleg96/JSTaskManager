@@ -5,10 +5,6 @@ import {FormControlLabel} from 'material-ui/Form';
 
 class Link extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         switch (this.props.active) {
             case true: {

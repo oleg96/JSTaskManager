@@ -6,6 +6,7 @@ import getTodoList from '../actions/getTodoList'
 import removeCompletedTodos from '../actions/removeCompletedTodos'
 import TodoList from '../components/todoList'
 import setMessage from '../actions/setMessage'
+import PropTypes from "prop-types";
 
 const getVisibleTodos = (todos, filter) => {
     switch (filter) {
@@ -35,6 +36,15 @@ const mapDispatchToProps = {
     onDeleteClick: removeTodo,
     onDeleteCompletedClick: removeCompletedTodos,
     onCompleteAllClick: completeAllTodos
+};
+
+getVisibleTodos.propTypes = {
+    setMessage: PropTypes.func.isRequired,
+    getTodoList: PropTypes.func.isRequired,
+    onTodoClick: PropTypes.func.isRequired,
+    onDeleteClick: PropTypes.func.isRequired,
+    onDeleteCompletedClick: PropTypes.func.isRequired,
+    onCompleteAllClick: PropTypes.func.isRequired,
 };
 
 const VisibleTodoList = connect(

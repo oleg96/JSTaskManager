@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import setMessage from '../actions/setMessage';
 import styles from '../stylesheets/main.css';
+import PropTypes from "prop-types";
 
 class App extends Component {
 
@@ -43,6 +44,10 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
     setMessage: setMessage
+};
+
+App.propTypes = {
+    setMessage: PropTypes.func.isRequired
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
