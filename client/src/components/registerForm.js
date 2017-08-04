@@ -1,60 +1,65 @@
 import React, {Component} from 'react';
-import {reduxForm} from 'redux-form';
-import register from '../actions/register';
+import {reduxForm, Field} from 'redux-form';
 import {connect} from "react-redux";
 import TextField from 'material-ui/TextField';
-import Button from 'material-ui/Button';
 import Grid from 'material-ui/Grid';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import setMessage from '../actions/setMessage';
 import Paper from 'material-ui/Paper';
+import validate from '../validators/inputValidate';
 import styles from '../stylesheets/main.css';
+import register from '../actions/register';
+import Button from 'material-ui/Button';
 
 class registerForm extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            user: {
-                username: '',
-                email: '',
-                password: ''
-            },
-            isLoading: false
-        };
-        this.onChange = this.onChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
-    }
-
-    async onSubmit(event) {
-        event.preventDefault();
-        this.props.register(this.state.user.username, this.state.user.email, this.state.user.password)
+    onSubmit(values) {
+        this.props.register(values.username, values.email, values.password)
             .then(response => {
                 this.props.setMessage(response.message, true)
-                this.props.history.push("/login")
+                this.props.history.push("/login");
             })
             .catch(error => {
                 this.props.setMessage(error.message, true)
             });
-    }
+    };
 
-    onChange(event) {
-        this.props.setMessage("", false)
-        const field = event.target.name;
-        const user = this.state.user;
-        user[field] = event.target.value;
-        this.setState({
-            user
-        })
-    }
+    renderTextField = ({
+        input,
+        label,
+        meta: {touched, error},
+        ...custom
+    }) =>
+        <TextField
+            error={Boolean(error)}
+            label={label}
+            helperText={error}
+            {...input}
+            {...custom}
+        />;
+
+    renderPasswordTextField = ({
+        input,
+        label,
+        meta: {touched, error},
+        ...custom
+    }) =>
+        <TextField
+            type="password"
+            error={Boolean(error)}
+            label={label}
+            helperText={error}
+            {...input}
+            {...custom}
+        />;
 
     render() {
         return (
             <Grid container direction='row' justify='center' align='stretch'>
                 <Grid item xs={9} sm={7} md={5} lg={3}>
                     <Paper className="formPosition">
-                        <form onSubmit={this.onSubmit}>
+                        <form onSubmit={this.props.handleSubmit(this.onSubmit.bind(this))}>
                             <Grid
                                 container
                                 align='center'
@@ -70,28 +75,24 @@ class registerForm extends Component {
                                     </Toolbar>
                                 </Grid>
                                 <Grid item>
-                                    <TextField
+                                    <Field
                                         name="username"
-                                        label="User name"
-                                        value={this.state.user.username}
-                                        onChange={this.onChange}
+                                        component={this.renderTextField}
+                                        label="Username"
                                     />
                                 </Grid>
                                 <Grid item>
-                                    <TextField
+                                    <Field
                                         name="email"
+                                        component={this.renderTextField}
                                         label="Email"
-                                        value={this.state.user.email}
-                                        onChange={this.onChange}
                                     />
                                 </Grid>
                                 <Grid item>
-                                    <TextField
+                                    <Field
                                         name="password"
+                                        component={this.renderPasswordTextField}
                                         label="Password"
-                                        value={this.state.user.password}
-                                        onChange={this.onChange}
-                                        type="password"
                                     />
                                 </Grid>
                                 <Grid item>
@@ -108,12 +109,13 @@ class registerForm extends Component {
 
 const formData = {
     form: 'RegisterForm',
-    fields: ['user']
+    fields: ['username', 'email', 'password'],
+    validate
 };
 
 const mapDispatchToProps = {
-    register: register,
-    setMessage: setMessage
+    setMessage: setMessage,
+    register: register
 };
 
 export default connect(null, mapDispatchToProps)(reduxForm(formData)(registerForm));
