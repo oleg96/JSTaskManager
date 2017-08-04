@@ -28,7 +28,24 @@ class Link extends Component {
                                 checked={false}
                                 label={this.props.children}
                                 onClick={e => {
-                                    e.preventDefault()
+                                    e.preventDefault();
+                                    this.props.onClick()
+                                }}
+                            />
+                        }
+                        label={this.props.children}
+                    />
+                )
+            }
+            default: {
+                return (
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={false}
+                                label={this.props.children}
+                                onClick={e => {
+                                    e.preventDefault();
                                     this.props.onClick()
                                 }}
                             />

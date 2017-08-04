@@ -5,7 +5,6 @@ import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import {NavLink} from 'react-router-dom'
 import Auth from '../security/auth'
-import styles from '../stylesheets/main.css';
 import Grid from 'material-ui/Grid';
 
 class TodoAppBar extends Component {

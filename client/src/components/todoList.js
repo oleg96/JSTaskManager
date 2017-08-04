@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import AddTodoForm from './addTodoForm';
 import UpdateTodoForm from './updateTodoForm';
 import Todo from './todo'
@@ -10,7 +10,6 @@ import Button from 'material-ui/Button';
 import Grid from 'material-ui/Grid';
 import Checkbox from 'material-ui/Checkbox';
 import {FormControlLabel} from 'material-ui/Form';
-import styles from '../stylesheets/main.css';
 
 class todoList extends Component {
 
@@ -189,7 +188,23 @@ class todoList extends Component {
                             </Grid>
                         </Grid>
                     </div>
+                );
+            default: {
+                return (
+                    <div>
+                        <Grid
+                            container
+                            align='center'
+                            justify='center'
+                            direction='column'
+                        >
+                            <Grid item>
+                                <AddTodoForm />
+                            </Grid>
+                        </Grid>
+                    </div>
                 )
+            }
         }
     }
 }

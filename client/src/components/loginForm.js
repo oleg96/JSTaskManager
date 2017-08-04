@@ -10,7 +10,6 @@ import Typography from 'material-ui/Typography';
 import setMessage from '../actions/setMessage';
 import Paper from 'material-ui/Paper';
 import validate from '../validators/inputValidate';
-import styles from '../stylesheets/main.css';
 import PropTypes from "prop-types";
 
 class loginForm extends Component {

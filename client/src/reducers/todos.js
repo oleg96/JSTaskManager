@@ -10,7 +10,7 @@ import {
 
 const todos = (state = [], action) => {
     switch (action.type) {
-        case 'ADD_TODO_SUCCESS':
+        case ADD_TODO_SUCCESS:
             return [
                 ...state,
                 {
@@ -19,31 +19,31 @@ const todos = (state = [], action) => {
                     completed: action.completed
                 }
             ];
-        case 'GET_TODOS_SUCCESS':
+        case GET_TODOS_SUCCESS:
             return action.todos.map(todo => {
                 todo.id = todo._id;
                 return todo;
             });
-        case 'UPDATE_TODO_SUCCESS':
+        case UPDATE_TODO_SUCCESS:
             return state.map(todo =>
                 (todo.id === action.id)
                     ? {...todo, text: action.text}
                     : todo
             );
-        case 'COMPLETE_TODO_SUCCESS':
+        case COMPLETE_TODO_SUCCESS:
             return state.map(todo =>
                 (todo.id === action.id)
                     ? {...todo, completed: !todo.completed}
                     : todo
             );
-        case 'COMPLETE_ALL_TODOS_SUCCESS':
+        case COMPLETE_ALL_TODOS_SUCCESS:
             const checkCompleted = state.every(todo => todo.completed);
             return state.map(todo => {
                 return {...todo, completed: !checkCompleted}
             });
-        case 'REMOVE_TODO_SUCCESS':
+        case REMOVE_TODO_SUCCESS:
             return state.filter((todo) => todo.id !== action.id);
-        case 'REMOVE_COMPLETED_TODOS_SUCCESS':
+        case REMOVE_COMPLETED_TODOS_SUCCESS:
             return state.filter(todo => !todo.completed);
         default:
             return state

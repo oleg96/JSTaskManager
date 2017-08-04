@@ -8,7 +8,6 @@ import Typography from 'material-ui/Typography';
 import setMessage from '../actions/setMessage';
 import Paper from 'material-ui/Paper';
 import validate from '../validators/inputValidate';
-import styles from '../stylesheets/main.css';
 import register from '../actions/register';
 import Button from 'material-ui/Button';
 import PropTypes from "prop-types";

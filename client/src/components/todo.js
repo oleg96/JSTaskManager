@@ -48,7 +48,18 @@ class Todo extends Component {
                         </ListItem>
                         <Divider light/>
                     </div>
-                )
+                );
+            default:
+                return (
+                    <div onMouseEnter={this.onMouseOver} onMouseLeave={this.onMouseOut}>
+                        <ListItem button onClick={this.props.onClick} onDoubleClick={this.props.onDoubleClick}>
+                            <ListItemText primary={this.props.text} style={{
+                                textDecoration: this.props.completed ? 'line-through' : 'none'
+                            }}/>
+                        </ListItem>
+                        <Divider light/>
+                    </div>
+                );
         }
     }
 }
