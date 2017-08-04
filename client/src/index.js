@@ -14,9 +14,13 @@ import Auth from './security/auth';
 import createMuiTheme from 'material-ui/styles/theme';
 
 const muiTheme = createMuiTheme({
-    appBar: {
-        height: 56, // Instead of 64
-    },
+    overrides: {
+        MuiListItemSecondaryAction: {
+            root: {
+                marginTop: -19
+            }
+        }
+    }
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
