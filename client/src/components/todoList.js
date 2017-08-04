@@ -82,8 +82,7 @@ class todoList extends Component {
         this.setState({editing: true, todo: todo});
     };
 
-    onSave = (event) => {
-        event.preventDefault();
+    onSave = () => {
         this.setState({
             editing: false
         })
