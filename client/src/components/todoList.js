@@ -66,7 +66,6 @@ class todoList extends Component {
     };
 
     onCompletedAllClick = (complete, userId) => (event) => {
-        event.preventDefault();
         this.props.onCompleteAllClick(complete, userId)
             .catch(error => {
                 this.props.setMessage(error.message, true);
@@ -115,7 +114,7 @@ class todoList extends Component {
                                             <Checkbox
                                                 checked={this.props.checkboxStatus}
                                                 value="Complete all todos"
-                                                onChange={this.onCompletedAllClick(this.props.checkboxStatus, Auth.decodeToken()['_doc']['_id'])}
+                                                onChange={this.onCompletedAllClick(Auth.decodeToken()['_doc']['_id'])}
                                             />
                                         }
                                         label="Complete all todos"

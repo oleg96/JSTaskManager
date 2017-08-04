@@ -7,9 +7,9 @@ const completeAllTodosSuccess = () => {
     }
 };
 
-const completeAllTodos = (complete, userId) => {
+const completeAllTodos = (userId) => {
     return dispatch => {
-        return completeAll(complete, userId).then(response => {
+        return completeAll(userId).then(response => {
             dispatch(completeAllTodosSuccess());
             return response;
         }).catch(error => {

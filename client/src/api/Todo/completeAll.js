@@ -2,7 +2,7 @@ import Auth from '../../security/auth'
 import {SERVER_URL} from '../../constants/serverURL'
 import validateResponse from '../validateResponse';
 
-export const completeAll = (completed, userId) => {
+export const completeAll = (userId) => {
 
     return fetch(SERVER_URL + '/todos/completeAll',
         {
@@ -12,7 +12,6 @@ export const completeAll = (completed, userId) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                'completed': completed,
                 'userId': userId
             })
         })
