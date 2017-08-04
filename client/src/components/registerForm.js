@@ -11,6 +11,7 @@ import validate from '../validators/inputValidate';
 import styles from '../stylesheets/main.css';
 import register from '../actions/register';
 import Button from 'material-ui/Button';
+import PropTypes from "prop-types";
 
 class registerForm extends Component {
 
@@ -26,11 +27,11 @@ class registerForm extends Component {
     };
 
     renderTextField = ({
-        input,
-        label,
-        meta: {touched, error},
-        ...custom
-    }) =>
+                           input,
+                           label,
+                           meta: {touched, error},
+                           ...custom
+                       }) =>
         <TextField
             error={Boolean(error)}
             label={label}
@@ -40,11 +41,11 @@ class registerForm extends Component {
         />;
 
     renderPasswordTextField = ({
-        input,
-        label,
-        meta: {touched, error},
-        ...custom
-    }) =>
+                                   input,
+                                   label,
+                                   meta: {touched, error},
+                                   ...custom
+                               }) =>
         <TextField
             type="password"
             error={Boolean(error)}
@@ -117,5 +118,11 @@ const mapDispatchToProps = {
     setMessage: setMessage,
     register: register
 };
+
+registerForm.propTypes = {
+    setMessage: PropTypes.func.isRequired,
+    register: PropTypes.func.isRequired
+};
+
 
 export default connect(null, mapDispatchToProps)(reduxForm(formData)(registerForm));
