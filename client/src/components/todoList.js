@@ -80,9 +80,10 @@ class todoList extends Component {
         this.setState({editing: true, todo: todo});
     };
 
-    onSave = () => {
+    onSave = () => (event) => {
         this.setState({
-            editing: false
+            editing: false,
+            todo: {}
         })
     };
 
@@ -132,8 +133,9 @@ class todoList extends Component {
                             </Grid>
                             {
                                 this.props.todos.map(todo => (
-                                    <Todo key={todo.id} {...todo} onClick={this.onTodoClick(todo.id)}
+                                    <Todo key={todo.id} {...todo}
                                           onDoubleClick={this.onDoubleClick(todo)}
+                                          onClick={this.onTodoClick(todo.id)}
                                           onDeleteClick={this.onDeleteClick(todo.id)}
                                     />
                                 ))

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {ListItem, ListItemSecondaryAction, ListItemText} from "material-ui/List";
 import Divider from "material-ui/Divider";
 import Button from "material-ui/Button";
+import Checkbox from 'material-ui/Checkbox';
 
 class Todo extends Component {
 
@@ -26,7 +27,11 @@ class Todo extends Component {
             case false:
                 return (
                     <div onMouseEnter={this.onMouseOver} onMouseLeave={this.onMouseOut}>
-                        <ListItem button onClick={this.props.onClick} onDoubleClick={this.props.onDoubleClick}>
+                        <ListItem button onDoubleClick={this.props.onDoubleClick}>
+                            <Checkbox
+                                checked={this.props.completed}
+                                onChange={this.props.onClick}
+                            />
                             <ListItemText primary={this.props.text} style={{
                                 textDecoration: this.props.completed ? 'line-through' : 'none'
                             }}/>
@@ -37,7 +42,11 @@ class Todo extends Component {
             case true:
                 return (
                     <div onMouseEnter={this.onMouseOver} onMouseLeave={this.onMouseOut}>
-                        <ListItem button onClick={this.props.onClick} onDoubleClick={this.props.onDoubleClick}>
+                        <ListItem button onDoubleClick={this.props.onDoubleClick}>
+                            <Checkbox
+                                checked={this.props.completed}
+                                onChange={this.props.onClick}
+                            />
                             <ListItemText primary={this.props.text} style={{
                                 textDecoration: this.props.completed ? 'line-through' : 'none'
                             }}/>
