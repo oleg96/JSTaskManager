@@ -3,7 +3,6 @@
 }
 
 .formPosition {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 16.5vh 8.25vh;
+    text-align: center;
 }

@@ -58,7 +58,7 @@ class registerForm extends Component {
         return (
             <Grid container direction='row' justify='center' align='stretch'>
                 <Grid item xs={9} sm={7} md={5} lg={3}>
-                    <Paper className="formPosition">
+                    <Paper>
                         <form onSubmit={this.props.handleSubmit(this.onSubmit.bind(this))}>
                             <Grid
                                 container

@@ -10,6 +10,7 @@ import registerForm from './components/registerForm';
 import loginForm from './components/loginForm';
 import visibleTodoList from './containers/visibleTodoList';
 import App from './components/App';
+import NotFound from './components/notFound';
 import Auth from './security/auth';
 import createMuiTheme from 'material-ui/styles/theme';
 
@@ -35,10 +36,12 @@ render(
             <BrowserRouter>
                 <App>
                     <Switch>
-                        <Route path="/register" component={registerForm}/>
-                        <Route path="/login" component={loginForm}/>
-                        <AuthenticatedRoute path="/todos" component={visibleTodoList}/>
-                        <Redirect from="/logout" to="/login"/>
+                        <Route exact={true} path="/register" component={registerForm} className="formPosition"/>
+                        <Route exact={true} path="/login" component={loginForm}/>
+                        <AuthenticatedRoute exact={true} path="/todos" component={visibleTodoList}/>
+                        <Redirect exact={true} from="/logout" to="/login"/>
+                        <Redirect exact={true} from="/" to="/todos"/>
+                        <Route path="**" component={NotFound}/>
                     </Switch>
                 </App>
             </BrowserRouter>
