@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import setVisibilityFilter from '../actions/setVisibilityFilter'
-import Link from '../components/link'
+import DirectFilterLink from '../components/link'
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -19,6 +19,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 const FilterLink = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Link)
+)(DirectFilterLink)
 
 export default FilterLink

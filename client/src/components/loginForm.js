@@ -18,7 +18,7 @@ class loginForm extends Component {
         this.props.login(values.email, values.password)
             .then(response => {
                 this.props.setMessage(response.message, true)
-                this.props.history.push("/todos");
+                this.props.history.push("/todos/all");
             })
             .catch(error => {
                 this.props.setMessage(error.message, true)

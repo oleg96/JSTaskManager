@@ -2,8 +2,9 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import Checkbox from 'material-ui/Checkbox';
 import {FormControlLabel} from 'material-ui/Form';
+import {Link} from 'react-router-dom'
 
-class Link extends Component {
+class DirectFilterLink extends Component {
 
     render() {
         switch (this.props.active) {
@@ -22,19 +23,19 @@ class Link extends Component {
             }
             case false: {
                 return (
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                                checked={false}
+                    <div>
+                        <Link to={'/todos/'+this.props.filter} onClick={this.props.onClick}>
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        checked={false}
+                                        label={this.props.children}
+                                    />
+                                }
                                 label={this.props.children}
-                                onClick={e => {
-                                    e.preventDefault();
-                                    this.props.onClick()
-                                }}
                             />
-                        }
-                        label={this.props.children}
-                    />
+                        </Link>
+                    </div>
                 )
             }
             default: {
@@ -58,10 +59,10 @@ class Link extends Component {
     }
 }
 
-Link.propTypes = {
+DirectFilterLink.propTypes = {
     active: PropTypes.bool.isRequired,
     children: PropTypes.node.isRequired,
     onClick: PropTypes.func.isRequired
 };
 
-export default Link;
+export default DirectFilterLink;

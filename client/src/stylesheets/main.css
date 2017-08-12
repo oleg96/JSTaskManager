@@ -2,6 +2,11 @@
     text-decoration: none;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
 .formPosition {
     padding: 16.5vh 8.25vh;
     text-align: center;

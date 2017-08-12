@@ -38,9 +38,9 @@ render(
                     <Switch>
                         <Route exact={true} path="/register" component={registerForm} className="formPosition"/>
                         <Route exact={true} path="/login" component={loginForm}/>
-                        <AuthenticatedRoute exact={true} path="/todos" component={visibleTodoList}/>
+                        <AuthenticatedRoute exact={true} path="/todos/:filter" component={visibleTodoList}/>
                         <Redirect exact={true} from="/logout" to="/login"/>
-                        <Redirect exact={true} from="/" to="/todos"/>
+                        <Redirect exact={true} from="/" to="/todos/all"/>
                         <Route path="**" component={NotFound}/>
                     </Switch>
                 </App>

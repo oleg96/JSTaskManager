@@ -1,15 +1,15 @@
-import React, {Component} from 'react';
-import AddTodoForm from './addTodoForm';
-import UpdateTodoForm from './updateTodoForm';
-import Todo from './todo'
-import Footer from './footer'
-import Badge from 'material-ui/Badge';
-import Assignment from 'material-ui-icons/Assignment'
-import Auth from '../security/auth'
-import Button from 'material-ui/Button';
-import Grid from 'material-ui/Grid';
-import Checkbox from 'material-ui/Checkbox';
-import {FormControlLabel} from 'material-ui/Form';
+import React, {Component} from "react";
+import AddTodoForm from "./addTodoForm";
+import UpdateTodoForm from "./updateTodoForm";
+import Todo from "./todo";
+import Footer from "./footer";
+import Badge from "material-ui/Badge";
+import Assignment from "material-ui-icons/Assignment";
+import Auth from "../security/auth";
+import Button from "material-ui/Button";
+import Grid from "material-ui/Grid";
+import Checkbox from "material-ui/Checkbox";
+import {FormControlLabel} from "material-ui/Form";
 
 class todoList extends Component {
 
@@ -19,6 +19,10 @@ class todoList extends Component {
             todo: {},
             editing: false
         };
+    }
+
+    componentWillMount() {
+        this.props.setVisibilityFilter(this.props.filter);
     }
 
     componentDidMount() {
