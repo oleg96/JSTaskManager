@@ -36,7 +36,7 @@ render(
             <BrowserRouter>
                 <App>
                     <Switch>
-                        <Route exact={true} path="/register" component={registerForm} className="formPosition"/>
+                        <Route exact={true} path="/register" component={registerForm}/>
                         <Route exact={true} path="/login" component={loginForm}/>
                         <AuthenticatedRoute exact={true} path="/todos/:filter" component={visibleTodoList}/>
                         <Redirect exact={true} from="/logout" to="/login"/>
