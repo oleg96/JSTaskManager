@@ -13,6 +13,7 @@
     "cors": "^2.8.4",
     "debug": "~2.6.3",
     "express": "~4.15.2",
+    "express-rate-limit": "^2.9.0",
     "express-unless": "0.3.0",
     "express-validation": "^1.0.2",
     "jade": "~1.11.0",

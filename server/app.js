@@ -5,7 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var cors = require('cors')
+var cors = require('cors');
+var RateLimit = require('express-rate-limit');
 
 import {routes as routesTodos} from './todos/index';
 import {routes as routesUsers} from './users/index';
@@ -25,6 +26,15 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+var limiter = new RateLimit({
+    windowMs: 1000, // 1 minute
+    max: 100, // limit each IP to 100 requests per windowMs
+    delayMs: 10 // disable delaying - full speed until the max limit is reached
+});
+
+//  apply to all requests
+app.use(limiter);
 
 app.use(routesMiddleware.unless({
     path: [
