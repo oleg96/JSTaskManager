@@ -28,9 +28,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 var limiter = new RateLimit({
-    windowMs: 1000, // 1 minute
-    max: 100, // limit each IP to 100 requests per windowMs
-    delayMs: 10 // disable delaying - full speed until the max limit is reached
+    windowMs: 1000, // 1 second
+    max: 50, // limit each IP to 50 requests per windowMs
+    delayMs: 0 // disable delaying - full speed until the max limit is reached
 });
 
 //  apply to all requests
