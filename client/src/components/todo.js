@@ -14,62 +14,36 @@ class Todo extends Component {
         };
     }
 
-    onMouseOver = (event) => {
+    onMouseOver = () => {
         this.setState({mouseOver: true});
     };
 
-    onMouseOut = (event) => {
+    onMouseOut = () => {
         this.setState({mouseOver: false});
     };
 
     render() {
-        switch (this.state.mouseOver) {
-            case false:
-                return (
-                    <div onMouseEnter={this.onMouseOver} onMouseLeave={this.onMouseOut}>
-                        <ListItem button onDoubleClick={this.props.onDoubleClick}>
-                            <Checkbox
-                                checked={this.props.completed}
-                                onChange={this.props.onClick}
-                            />
-                            <ListItemText primary={this.props.text} style={{
-                                textDecoration: this.props.completed ? 'line-through' : 'none'
-                            }}/>
-                        </ListItem>
-                        <Divider light/>
-                    </div>
-                );
-            case true:
-                return (
-                    <div onMouseEnter={this.onMouseOver} onMouseLeave={this.onMouseOut}>
-                        <ListItem button onDoubleClick={this.props.onDoubleClick}>
-                            <Checkbox
-                                checked={this.props.completed}
-                                onChange={this.props.onClick}
-                            />
-                            <ListItemText primary={this.props.text} style={{
-                                textDecoration: this.props.completed ? 'line-through' : 'none'
-                            }}/>
-                            <ListItemSecondaryAction>
-                                <Button raised color="accent" onClick={this.props.onDeleteClick}>Delete
-                                    todo</Button>
-                            </ListItemSecondaryAction>
-                        </ListItem>
-                        <Divider light/>
-                    </div>
-                );
-            default:
-                return (
-                    <div onMouseEnter={this.onMouseOver} onMouseLeave={this.onMouseOut}>
-                        <ListItem button onClick={this.props.onClick} onDoubleClick={this.props.onDoubleClick}>
-                            <ListItemText primary={this.props.text} style={{
-                                textDecoration: this.props.completed ? 'line-through' : 'none'
-                            }}/>
-                        </ListItem>
-                        <Divider light/>
-                    </div>
-                );
-        }
+        return (
+            <div>
+                <ListItem button onDoubleClick={this.props.onDoubleClick} onMouseEnter={this.onMouseOver} onMouseLeave={this.onMouseOut}>
+                    <Checkbox
+                        checked={this.props.completed}
+                        onChange={this.props.onClick}
+                    />
+                    <ListItemText primary={this.props.text} style={{
+                        textDecoration: this.props.completed ? 'line-through' : 'none'
+                    }}/>
+                    {this.state.mouseOver ?
+                        <ListItemSecondaryAction>
+                            <Button raised color="accent" onClick={this.props.onDeleteClick}>Delete
+                                todo</Button>
+                        </ListItemSecondaryAction>
+                        : null
+                    }
+                </ListItem>
+                <Divider light/>
+            </div>
+        );
     }
 }
 
